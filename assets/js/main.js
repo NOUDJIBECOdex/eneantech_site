@@ -1,0 +1,421 @@
+/* ==========================================================================
+   ENEANTECH — main.js
+   - Thème Clair / Sombre (sauvegardé en localStorage)
+   - Barre de progression de lecture & Header au scroll
+   - Menu mobile fluide
+   - Défilement & apparitions animées (ScrollReveal avec delay dynamique)
+   - Effet Spotlight lumineux au survol des cartes (.glass)
+   - Compteurs numériques animés
+   - Filtre des formations interactif
+   - Synchronisation des boutons CTA avec les formulaires
+   - Envoi Ajax vers Formspree avec confirmation visuelle
+   - Passerelle directe devis vers WhatsApp
+   ========================================================================== */
+(function () {
+  'use strict';
+
+  /* ----- CONFIGURATION ----- */
+  const CONFIG = {
+    whatsappNumber: '237697404874',                    // WhatsApp officiel (+237 697 40 48 74)
+    formEndpoint: 'https://formspree.io/f/mqabwajw',    // Formspree relié à nmbaihilamde@gmail.com
+    contactEmail: 'nmbaihilamde@gmail.com'
+  };
+
+  const $ = (s, c = document) => c.querySelector(s);
+  const $$ = (s, c = document) => Array.from(c.querySelectorAll(s));
+
+  /* ==========================================================================
+     01. GESTION DU THÈME CLAIR / SOMBRE
+     ========================================================================== */
+  const themeToggle = $('#theme-toggle');
+  const root = document.documentElement;
+
+  const getPreferredTheme = () => {
+    const saved = localStorage.getItem('eneantech-theme');
+    if (saved === 'light' || saved === 'dark') return saved;
+    return 'dark'; // Thème fétiche par défaut : Bleu nuit / Sombre
+  };
+
+  const applyTheme = (theme, animate = false) => {
+    if (animate) {
+      root.classList.add('theme-anim');
+      setTimeout(() => root.classList.remove('theme-anim'), 450);
+    }
+    root.setAttribute('data-theme', theme);
+    localStorage.setItem('eneantech-theme', theme);
+  };
+
+  // Initialisation immédiate du thème
+  applyTheme(getPreferredTheme(), false);
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const current = root.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+      const next = current === 'light' ? 'dark' : 'light';
+      applyTheme(next, true);
+    });
+  }
+
+  /* ==========================================================================
+     02. ANNÉE DU FOOTER & BARRE DE PROGRESSION
+     ========================================================================== */
+  const yearEl = $('#year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  const progressBar = $('#progress');
+  const updateProgress = () => {
+    if (!progressBar) return;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? window.scrollY / docHeight : 0;
+    progressBar.style.setProperty('--p', Math.min(Math.max(progress, 0), 1));
+  };
+
+  /* ==========================================================================
+     03. HEADER AU DÉFILEMENT & BOUTON RETOUR EN HAUT
+     ========================================================================== */
+  const header = $('#header');
+  const toTop = $('#scroll-top');
+
+  const onScroll = () => {
+    const y = window.scrollY;
+    if (header) header.classList.toggle('is-scrolled', y > 20);
+    if (toTop) toTop.classList.toggle('is-visible', y > 500);
+    updateProgress();
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  if (toTop) {
+    toTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  /* ==========================================================================
+     04. MENU MOBILE
+     ========================================================================== */
+  const burger = $('#burger');
+  const nav = $('#nav');
+
+  const closeMenu = () => {
+    if (!nav || !burger) return;
+    nav.classList.remove('is-open');
+    burger.classList.remove('is-open');
+    burger.setAttribute('aria-expanded', 'false');
+  };
+
+  if (burger && nav) {
+    burger.addEventListener('click', () => {
+      const open = nav.classList.toggle('is-open');
+      burger.classList.toggle('is-open', open);
+      burger.setAttribute('aria-expanded', String(open));
+    });
+    $$('.nav__link').forEach(link => link.addEventListener('click', closeMenu));
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeMenu();
+    });
+  }
+
+  /* ==========================================================================
+     05. LIENS ACTIFS AU SCROLL (SCROLLSPY)
+     ========================================================================== */
+  const sections = $$('main section[id]');
+  const navLinks = $$('.nav__link');
+  if ('IntersectionObserver' in window && sections.length > 0) {
+    const spy = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          navLinks.forEach(link => {
+            const href = link.getAttribute('href');
+            link.classList.toggle('is-active', href === `#${id}`);
+          });
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    sections.forEach(s => spy.observe(s));
+  }
+
+  /* ==========================================================================
+     06. ANIMATIONS AU DÉFILEMENT & PARALLAXE LÉGÈRE
+     ========================================================================== */
+  const reveals = $$('.reveal');
+  if ('IntersectionObserver' in window && reveals.length > 0) {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const delay = el.dataset.delay ? parseFloat(el.dataset.delay) * 0.15 : 0;
+          el.style.setProperty('--d', `${delay}s`);
+          el.classList.add('is-visible');
+
+          // Libère les transitions de survol une fois l'animation d'entrée achevée
+          setTimeout(() => el.classList.add('is-done'), (delay + 0.9) * 1000);
+          observer.unobserve(el);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    reveals.forEach(el => revealObserver.observe(el));
+  } else {
+    reveals.forEach(el => el.classList.add('is-visible', 'is-done'));
+  }
+
+  /* ==========================================================================
+     07. SPOTLIGHT CURSEUR SUR LES CARTES EN VERRE (.glass)
+     ========================================================================== */
+  const glassCards = $$('.glass');
+  glassCards.forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--mx', `${x}px`);
+      card.style.setProperty('--my', `${y}px`);
+    });
+  });
+
+  /* ==========================================================================
+     08. COMPTEURS NUMÉRIQUES ANIMÉS
+     ========================================================================== */
+  const counters = $$('[data-count]');
+  const animateCounter = el => {
+    const target = +el.dataset.count;
+    const suffix = el.dataset.suffix || '';
+    const duration = 1600;
+    const start = performance.now();
+
+    const step = now => {
+      const p = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * eased) + (p === 1 ? suffix : '');
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+
+  if ('IntersectionObserver' in window && counters.length > 0) {
+    const counterObserver = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    counters.forEach(c => counterObserver.observe(c));
+  } else {
+    counters.forEach(c => animateCounter(c));
+  }
+
+  /* ==========================================================================
+     09. FILTRES DES FORMATIONS
+     ========================================================================== */
+  const formationFilters = $$('#formations .filter');
+  const courses = $$('.course');
+  formationFilters.forEach(btn => {
+    btn.addEventListener('click', () => {
+      formationFilters.forEach(b => b.classList.toggle('is-active', b === btn));
+      const f = btn.dataset.filter;
+      courses.forEach(c => {
+        const matches = f === 'all' || c.dataset.category === f;
+        c.classList.toggle('is-hidden', !matches);
+        if (matches) {
+          c.classList.remove('is-visible');
+          void c.offsetWidth; // Reflow pour redéclencher l'animation
+          c.classList.add('is-visible');
+        }
+      });
+    });
+  });
+
+  /* ==========================================================================
+     09-B. FILTRES & MODALE DU PORTFOLIO (NOS RÉALISATIONS)
+     ========================================================================== */
+  const portfolioFilters = $$('#portfolio-filters .filter');
+  const portfolioCards = $$('.portfolio-card');
+  portfolioFilters.forEach(btn => {
+    btn.addEventListener('click', () => {
+      portfolioFilters.forEach(b => b.classList.toggle('is-active', b === btn));
+      const f = btn.dataset.filter;
+      portfolioCards.forEach(card => {
+        const matches = f === 'all' || card.dataset.category === f;
+        card.classList.toggle('is-hidden', !matches);
+        if (matches) {
+          card.classList.remove('is-visible');
+          void card.offsetWidth;
+          card.classList.add('is-visible');
+        }
+      });
+    });
+  });
+
+  // Modal d'aperçu détaillé des projets
+  const portfolioModal = $('#portfolio-modal');
+  const modalClose = $('#portfolio-modal-close');
+  const modalBackdrop = $('#portfolio-modal-backdrop');
+
+  const openPortfolioModal = card => {
+    if (!portfolioModal) return;
+    const title = card.dataset.title || '';
+    const client = card.dataset.client || '';
+    const cat = card.dataset.categoryLabel || '';
+    const img = card.dataset.image || '';
+    const desc = card.dataset.desc || '';
+    const challenge = card.dataset.challenge || '';
+    const solution = card.dataset.solution || '';
+    const metrics = card.dataset.metrics || '';
+    const tech = (card.dataset.tech || '').split(',').filter(Boolean);
+
+    const imgEl = $('#modal-project-img');
+    if (imgEl) { imgEl.src = img; imgEl.alt = title; }
+    const catEl = $('#modal-project-category');
+    if (catEl) catEl.textContent = cat;
+    const clientEl = $('#modal-project-client');
+    if (clientEl) clientEl.textContent = client;
+    const titleEl = $('#modal-project-title');
+    if (titleEl) titleEl.textContent = title;
+    const descEl = $('#modal-project-desc');
+    if (descEl) descEl.textContent = desc;
+    const chEl = $('#modal-project-challenge');
+    if (chEl) chEl.textContent = challenge;
+    const solEl = $('#modal-project-solution');
+    if (solEl) solEl.textContent = solution;
+    const mEl = $('#modal-project-metrics');
+    if (mEl) mEl.textContent = metrics;
+
+    const techEl = $('#modal-project-tech');
+    if (techEl) {
+      techEl.innerHTML = tech.map(t => `<span class="tag">${t.trim()}</span>`).join('');
+    }
+
+    const waEl = $('#modal-project-whatsapp');
+    if (waEl) {
+      waEl.href = `https://wa.me/237697404874?text=${encodeURIComponent("Bonjour ENEANTECH, je suis intéressé par votre réalisation : " + title)}`;
+    }
+
+    portfolioModal.classList.add('is-active');
+    portfolioModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closePortfolioModal = () => {
+    if (!portfolioModal) return;
+    portfolioModal.classList.remove('is-active');
+    portfolioModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
+
+  portfolioCards.forEach(card => {
+    card.addEventListener('click', e => {
+      if (e.target.closest('a')) return;
+      openPortfolioModal(card);
+    });
+  });
+
+  if (modalClose) modalClose.addEventListener('click', closePortfolioModal);
+  if (modalBackdrop) modalBackdrop.addEventListener('click', closePortfolioModal);
+
+  const modalCta = $('#modal-project-cta');
+  if (modalCta) {
+    modalCta.addEventListener('click', () => {
+      closePortfolioModal();
+    });
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && portfolioModal && portfolioModal.classList.contains('is-active')) {
+      closePortfolioModal();
+    }
+  });
+
+  /* ==========================================================================
+     10. PRÉ-SÉLECTION DEPUIS LES BOUTONS
+     ========================================================================== */
+  const setSelectValue = (select, value) => {
+    if (!select || !value) return;
+    const norm = s => s.replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim().toLowerCase();
+    const target = norm(value);
+    const opt = Array.from(select.options).find(o => norm(o.textContent).includes(target) || norm(o.value).includes(target));
+    if (opt) select.value = opt.value || opt.textContent;
+  };
+
+  $$('[data-service]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const val = btn.dataset.service;
+      setSelectValue($('#dv-service'), val);
+    });
+  });
+
+  $$('[data-formation]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const val = btn.dataset.formation;
+      setSelectValue($('#ins-formation'), val);
+    });
+  });
+
+  /* ==========================================================================
+     11. ENVOI DES FORMULAIRES (AJAX VERS FORMSPREE)
+     ========================================================================== */
+  const handleFormSubmit = (form, submitBtn) => {
+    if (!form || !submitBtn) return;
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const successEl = $('.form__success', form);
+      const originalLabel = submitBtn.textContent;
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Envoi en cours…';
+
+      try {
+        const formData = new FormData(form);
+        const res = await fetch(CONFIG.formEndpoint, {
+          method: 'POST',
+          body: formData,
+          headers: { Accept: 'application/json' }
+        });
+
+        if (!res.ok) throw new Error('Erreur de transmission');
+
+        form.reset();
+        if (successEl) {
+          successEl.classList.add('is-visible');
+          setTimeout(() => successEl.classList.remove('is-visible'), 9000);
+        }
+      } catch (err) {
+        alert(
+          'Une erreur est survenue lors de l\'envoi via le serveur.\n' +
+          'Vous pouvez nous contacter directement sur WhatsApp (+237 697 40 48 74) ou par e-mail à ' + CONFIG.contactEmail
+        );
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalLabel;
+      }
+    });
+  };
+
+  handleFormSubmit($('#devis-form'), $('#dv-submit'));
+  handleFormSubmit($('#inscription-form'), $('#ins-submit'));
+
+  /* ==========================================================================
+     12. DEVIS ENVOYÉ DIRECTEMENT SUR WHATSAPP
+     ========================================================================== */
+  const whatsappBtn = $('#dv-whatsapp');
+  if (whatsappBtn) {
+    whatsappBtn.addEventListener('click', () => {
+      const getVal = id => ($(id)?.value || 'Non renseigné').trim();
+      const message =
+        `Bonjour ENEANTECH,\n` +
+        `Je souhaite faire une demande de devis :\n\n` +
+        `👤 *Nom :* ${getVal('#dv-nom')}\n` +
+        `📧 *E-mail :* ${getVal('#dv-email')}\n` +
+        `🛠 *Service :* ${getVal('#dv-service')}\n` +
+        `💰 *Budget estimé :* ${getVal('#dv-budget')}\n` +
+        `📝 *Projet :* ${getVal('#dv-message')}`;
+
+      const url = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank', 'noopener');
+    });
+  }
+
+})();

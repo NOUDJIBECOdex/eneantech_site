@@ -16,7 +16,7 @@
 
   /* ----- CONFIGURATION ----- */
   const CONFIG = {
-    whatsappNumber: '237697404874',                    // WhatsApp officiel (+237 697 40 48 74)
+    whatsappNumber: '237697484074',                    // WhatsApp officiel (+237 697 48 40 74)
     formEndpoint: 'https://formspree.io/f/mqabwajw',    // Formspree relié à nmbaihilamde@gmail.com
     contactEmail: 'nmbaihilamde@gmail.com'
   };
@@ -291,7 +291,7 @@
 
     const waEl = $('#modal-project-whatsapp');
     if (waEl) {
-      waEl.href = `https://wa.me/237697404874?text=${encodeURIComponent("Bonjour ENEANTECH, je suis intéressé par votre réalisation : " + title)}`;
+      waEl.href = `https://wa.me/237697484074?text=${encodeURIComponent("Bonjour ENEANTECH, je suis intéressé par votre réalisation : " + title)}`;
     }
 
     portfolioModal.classList.add('is-active');
@@ -385,7 +385,7 @@
       } catch (err) {
         alert(
           'Une erreur est survenue lors de l\'envoi via le serveur.\n' +
-          'Vous pouvez nous contacter directement sur WhatsApp (+237 697 40 48 74) ou par e-mail à ' + CONFIG.contactEmail
+          'Vous pouvez nous contacter directement sur WhatsApp (+237 697 48 40 74) ou par e-mail à ' + CONFIG.contactEmail
         );
       } finally {
         submitBtn.disabled = false;
@@ -492,7 +492,7 @@
           <h4>Direction &amp; Contacts</h4>
           <p>Direction Générale : M. Noudjibe Martin<br>
           E-mail : <a href="mailto:eneantechnoudjibe@gmail.com" style="color:var(--cyan-400);">eneantechnoudjibe@gmail.com</a><br>
-          Téléphone / WhatsApp : +237 697 40 48 74</p>
+          Téléphone / WhatsApp : +237 697 48 40 74</p>
         </div>
         <div>
           <h4>Hébergement &amp; Sécurité</h4>

@@ -884,70 +884,138 @@
   </main>
 
   <!-- ===================== FOOTER ===================== -->
-  <footer class="footer">
+  <footer class="footer" id="footer">
     <div class="container">
-      <div class="grid footer__grid">
-        <div>
-          <a href="#top" class="brand">
-            <img class="brand__logo" src="assets/images/logo/logo_eneantech.jpg" alt="Logo ENEANTECH" width="42" height="42" loading="lazy" />
-            <span>ENEAN<em>TECH</em> <small class="muted" style="font-weight:500;">Sarl</small></span>
+      <div class="footer__inner">
+        <!-- 01. BLOC MARQUE -->
+        <div class="footer__brand-block">
+          <a href="#top" class="footer__brand-link" aria-label="Retour en haut de page">
+            <div class="footer__logo-badge">
+              <img src="assets/images/logo/logo_eneantech.jpg" alt="Logo ENEANTECH Sarl" width="48" height="48" loading="lazy" />
+            </div>
+            <div class="footer__brand-meta">
+              <span class="footer__brand-title">ENEANTECH</span>
+              <span class="footer__brand-subtitle">TCHAD / CAMEROUN</span>
+            </div>
           </a>
-          <p class="muted" style="margin-top:1rem;max-width:32ch;">Former pour impacter, développer pour transformer.</p>
-          <div class="socials">
-            <a href="https://www.facebook.com/profile.php?id=61572260336634" target="_blank" rel="noopener" aria-label="Facebook ENEANTECH" class="soc-facebook" id="social-facebook">
+          <p class="footer__brand-desc">
+            Cabinet d'ingénierie logicielle, réseaux &amp; télécoms, prospective technologique et formation certifiante. Innovons par le numérique pour propulser les organisations en Afrique Centrale.
+          </p>
+        </div>
+
+        <!-- 02. GRILLE DE LIENS (2 COLONNES CÔTE À CÔTE EN MOBILE) -->
+        <div class="footer__nav-grid">
+          <div class="footer__nav-col">
+            <h3 class="footer__heading">LIENS RAPIDES</h3>
+            <ul class="footer__nav-list">
+              <li><a href="#top">Accueil</a></li>
+              <li><a href="#apropos">À Propos</a></li>
+              <li><a href="#services">Expertises</a></li>
+              <li><a href="#portfolio">Publications</a></li>
+              <li><a href="#devis" class="footer__highlight-link">Demande d'Étude / TDR</a></li>
+              <li><a href="#equipe">Notre Équipe</a></li>
+              <li><a href="#portfolio">Galerie Photos</a></li>
+              <li><a href="#contact">Rejoindre le vivier</a></li>
+            </ul>
+          </div>
+
+          <div class="footer__nav-col">
+            <h3 class="footer__heading">LÉGAL</h3>
+            <ul class="footer__nav-list">
+              <li><button type="button" class="footer__text-btn" id="open-legal-modal">Mentions Légales</button></li>
+              <li><button type="button" class="footer__text-btn" id="open-privacy-modal">Confidentialité</button></li>
+              <li><a href="#contact">Contact Sièges</a></li>
+              <li><a href="#tarifs">Tarifs &amp; Devis</a></li>
+              <li><a href="mailto:eneantechnoudjibe@gmail.com">Support Technique</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 03. NEWSLETTER & VEILLE -->
+        <div class="footer__newsletter-block">
+          <h3 class="footer__heading">NEWSLETTER &amp; VEILLE</h3>
+          <p class="footer__newsletter-desc">
+            Abonnez-vous pour recevoir nos dernières publications, analyses stratégiques et actualités technologiques.
+          </p>
+          <form class="footer__newsletter-form" id="newsletter-form" action="https://formspree.io/f/mqabwajw" method="POST">
+            <input type="hidden" name="_subject" value="Nouvel abonné Newsletter — ENEANTECH" />
+            <div class="footer__newsletter-box">
+              <input 
+                class="footer__newsletter-input" 
+                id="newsletter-email" 
+                name="email" 
+                type="email" 
+                placeholder="Votre adresse email" 
+                required 
+                aria-label="Votre adresse email" 
+              />
+              <button type="submit" class="footer__newsletter-btn" id="newsletter-btn" aria-label="S'abonner à la newsletter">
+                <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+              </button>
+            </div>
+            <div class="footer__newsletter-msg" id="newsletter-msg" role="status"></div>
+          </form>
+        </div>
+
+        <!-- 04. SUIVEZ-NOUS (ICÔNES CIRCULAIRES SOMBRE) -->
+        <div class="footer__social-block">
+          <h3 class="footer__heading">SUIVEZ-NOUS</h3>
+          <div class="footer__social-icons">
+            <a href="https://www.facebook.com/profile.php?id=61572260336634" target="_blank" rel="noopener" aria-label="Facebook ENEANTECH" class="footer__soc-circle soc-facebook" id="soc-fb">
               <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
             </a>
-            <a href="https://www.tiktok.com/@eneantech" target="_blank" rel="noopener" aria-label="TikTok ENEANTECH" class="soc-tiktok" id="social-tiktok">
-              <svg class="ico" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true">
-                <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64c.29 0 .58.04.85.12V9.4a6.33 6.33 0 00-.85-.06A6.34 6.34 0 003.1 15.68a6.34 6.34 0 0010.82 4.48c.32-.32.6-.68.83-1.07V11.2a8.28 8.28 0 004.84 1.54V9.29a4.83 4.83 0 01-.0-.04z"/>
-              </svg>
+            <a href="https://www.linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn ENEANTECH" class="footer__soc-circle soc-linkedin" id="soc-in">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
             </a>
-            <a href="https://www.youtube.com/@eneantech" target="_blank" rel="noopener" aria-label="YouTube ENEANTECH" class="soc-youtube" id="social-youtube">
+            <a href="https://www.youtube.com/@eneantech" target="_blank" rel="noopener" aria-label="YouTube ENEANTECH" class="footer__soc-circle soc-youtube" id="soc-yt">
               <svg class="ico" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true">
                 <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
               </svg>
             </a>
-            <a href="https://wa.me/237697404874" target="_blank" rel="noopener" aria-label="WhatsApp ENEANTECH" class="soc-whatsapp" id="social-whatsapp">
-              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 01-12.4 7.4L3 21l2.1-5.6A8.4 8.4 0 1121 11.5z"/></svg>
+            <a href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="Instagram ENEANTECH" class="footer__soc-circle soc-instagram" id="soc-ig">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+              </svg>
             </a>
-            <a href="mailto:eneantechnoudjibe@gmail.com" aria-label="E-mail ENEANTECH" id="social-email">
-              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg>
+            <a href="https://www.tiktok.com/@eneantech" target="_blank" rel="noopener" aria-label="TikTok ENEANTECH" class="footer__soc-circle soc-tiktok" id="soc-tk">
+              <svg class="ico" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true">
+                <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64c.29 0 .58.04.85.12V9.4a6.33 6.33 0 00-.85-.06A6.34 6.34 0 003.1 15.68a6.34 6.34 0 0010.82 4.48c.32-.32.6-.68.83-1.07V11.2a8.28 8.28 0 004.84 1.54V9.29a4.83 4.83 0 01-.0-.04z"/>
+              </svg>
+            </a>
+            <a href="https://wa.me/237697404874" target="_blank" rel="noopener" aria-label="WhatsApp ENEANTECH" class="footer__soc-circle soc-whatsapp" id="soc-wa">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 01-12.4 7.4L3 21l2.1-5.6A8.4 8.4 0 1121 11.5z"/></svg>
             </a>
           </div>
         </div>
-        <div>
-          <h4>Services</h4>
-          <ul>
-            <li><a href="#services">Réseaux</a></li>
-            <li><a href="#services">Dév Web &amp; Logiciel</a></li>
-            <li><a href="#services">Infographie</a></li>
-            <li><a href="#services">Cybersécurité</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4>Entreprise</h4>
-          <ul>
-            <li><a href="#portfolio">Réalisations</a></li>
-            <li><a href="#formations">Formations</a></li>
-            <li><a href="#tarifs">Tarifs</a></li>
-            <li><a href="#apropos">À propos</a></li>
-            <li><a href="#temoignages">Témoignages</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4>Contact</h4>
-          <ul>
-            <li><a href="mailto:eneantechnoudjibe@gmail.com">eneantechnoudjibe@gmail.com</a></li>
-            <li><a href="https://wa.me/237697404874" target="_blank" rel="noopener">+237 697 40 48 74</a></li>
-            <li class="muted">Maroua-Pitoaré, Cameroun</li>
-          </ul>
-        </div>
       </div>
+
+      <!-- 05. PIED DE PAGE BAS (COPYRIGHT & SIÈGES) -->
       <div class="footer__bottom">
         <span>© <span id="year">2026</span> ENEANTECH Sarl. Tous droits réservés.</span>
+        <span class="footer__bottom-sub">Sièges opérationnels : Maroua (Cameroun) &amp; N'Djamena (Tchad)</span>
       </div>
     </div>
   </footer>
+
+  <!-- ===================== MODAL MENTIONS LÉGALES & CONFIDENTIALITÉ ===================== -->
+  <div class="info-modal" id="info-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="info-modal-title">
+    <div class="info-modal__backdrop" id="info-modal-backdrop"></div>
+    <div class="info-modal__dialog glass">
+      <button type="button" class="info-modal__close" id="info-modal-close" aria-label="Fermer la fenêtre">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="info-modal__header">
+        <span class="badge" id="info-modal-badge">Informations officielles</span>
+        <h3 id="info-modal-title">Mentions Légales</h3>
+      </div>
+      <div class="info-modal__content" id="info-modal-body">
+        <!-- Rempli dynamiquement par JavaScript -->
+      </div>
+    </div>
+  </div>
 
   <!-- ===================== MODAL D'APERÇU PROJET ===================== -->
   <div class="portfolio-modal" id="portfolio-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-project-title">

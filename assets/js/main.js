@@ -418,4 +418,138 @@
     });
   }
 
+  /* ==========================================================================
+     13. NEWSLETTER DU FOOTER (SOUMISSION AJAX)
+     ========================================================================== */
+  const newsletterForm = $('#newsletter-form');
+  const newsletterBtn = $('#newsletter-btn');
+  const newsletterMsg = $('#newsletter-msg');
+
+  if (newsletterForm && newsletterBtn) {
+    newsletterForm.addEventListener('submit', async e => {
+      e.preventDefault();
+      const originalHtml = newsletterBtn.innerHTML;
+
+      newsletterBtn.disabled = true;
+      newsletterBtn.innerHTML = '…';
+
+      try {
+        const formData = new FormData(newsletterForm);
+        const res = await fetch(CONFIG.formEndpoint, {
+          method: 'POST',
+          body: formData,
+          headers: { Accept: 'application/json' }
+        });
+
+        if (!res.ok) throw new Error('Erreur transmission');
+
+        newsletterForm.reset();
+        if (newsletterMsg) {
+          newsletterMsg.textContent = '✅ Merci ! Votre abonnement à notre veille est confirmé.';
+          newsletterMsg.className = 'footer__newsletter-msg is-success';
+          newsletterMsg.style.display = 'block';
+          setTimeout(() => { newsletterMsg.style.display = 'none'; }, 8000);
+        }
+      } catch (err) {
+        if (newsletterMsg) {
+          newsletterMsg.textContent = '⚠️ Erreur de transmission. Vous pouvez nous écrire à eneantechnoudjibe@gmail.com';
+          newsletterMsg.className = 'footer__newsletter-msg';
+          newsletterMsg.style.display = 'block';
+        }
+      } finally {
+        newsletterBtn.disabled = false;
+        newsletterBtn.innerHTML = originalHtml;
+      }
+    });
+  }
+
+  /* ==========================================================================
+     14. MODALE MENTIONS LÉGALES & CONFIDENTIALITÉ
+     ========================================================================== */
+  const infoModal = $('#info-modal');
+  const infoModalClose = $('#info-modal-close');
+  const infoModalBackdrop = $('#info-modal-backdrop');
+  const infoModalTitle = $('#info-modal-title');
+  const infoModalBadge = $('#info-modal-badge');
+  const infoModalBody = $('#info-modal-body');
+
+  const openInfoModal = type => {
+    if (!infoModal || !infoModalTitle || !infoModalBody) return;
+
+    if (type === 'legal') {
+      if (infoModalBadge) infoModalBadge.textContent = 'Informations légales & statutaires';
+      infoModalTitle.textContent = 'Mentions Légales';
+      infoModalBody.innerHTML = `
+        <div>
+          <h4>Dénomination &amp; Raison Sociale</h4>
+          <p><strong>ENEANTECH Sarl</strong> — Société à Responsabilité Limitée d'ingénierie informatique, transformation digitale, réseaux &amp; télécoms et formations professionnelles.</p>
+        </div>
+        <div>
+          <h4>Implantations &amp; Sièges opérationnels</h4>
+          <ul>
+            <li><strong>Siège Cameroun :</strong> Maroua-Pitoaré, Région de l'Extrême-Nord.</li>
+            <li><strong>Antenne Tchad :</strong> N'Djamena, Afrique Centrale.</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Direction &amp; Contacts</h4>
+          <p>Direction Générale : M. Noudjibe Martin<br>
+          E-mail : <a href="mailto:eneantechnoudjibe@gmail.com" style="color:var(--cyan-400);">eneantechnoudjibe@gmail.com</a><br>
+          Téléphone / WhatsApp : +237 697 40 48 74 / +235 62 82 25 35</p>
+        </div>
+        <div>
+          <h4>Hébergement &amp; Sécurité</h4>
+          <p>Plateforme hébergée via infrastructure Cloud sécurisée avec chiffrement SSL/TLS de bout en bout et surveillance 24/7.</p>
+        </div>
+      `;
+    } else if (type === 'privacy') {
+      if (infoModalBadge) infoModalBadge.textContent = 'Protection des données';
+      infoModalTitle.textContent = 'Politique de Confidentialité';
+      infoModalBody.innerHTML = `
+        <div>
+          <h4>Protection de votre vie privée</h4>
+          <p>ENEANTECH Sarl accorde la plus haute importance à la protection et au respect de vos données personnelles.</p>
+        </div>
+        <div>
+          <h4>Données collectées</h4>
+          <p>Les informations transmises (nom, e-mail, téléphone, cahier des charges) lors d'une demande de devis, d'inscription ou d'abonnement newsletter sont uniquement traitées pour répondre à votre sollicitation commerciale ou pédagogique.</p>
+        </div>
+        <div>
+          <h4>Non-divulgation &amp; Sécurité</h4>
+          <p>Vos coordonnées ne sont <strong>en aucun cas commercialisées, vendues ou cédées</strong> à des tiers. Nos systèmes respectent les standards rigoureux de sécurité informatique.</p>
+        </div>
+        <div>
+          <h4>Vos droits</h4>
+          <p>Vous disposez d'un droit permanent d'accès, de rectification et d'effacement de vos données. Pour l'exercer, contactez-nous à : <a href="mailto:eneantechnoudjibe@gmail.com" style="color:var(--cyan-400);">eneantechnoudjibe@gmail.com</a>.</p>
+        </div>
+      `;
+    }
+
+    infoModal.classList.add('is-active');
+    infoModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeInfoModal = () => {
+    if (!infoModal) return;
+    infoModal.classList.remove('is-active');
+    infoModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
+
+  const legalBtn = $('#open-legal-modal');
+  if (legalBtn) legalBtn.addEventListener('click', () => openInfoModal('legal'));
+
+  const privacyBtn = $('#open-privacy-modal');
+  if (privacyBtn) privacyBtn.addEventListener('click', () => openInfoModal('privacy'));
+
+  if (infoModalClose) infoModalClose.addEventListener('click', closeInfoModal);
+  if (infoModalBackdrop) infoModalBackdrop.addEventListener('click', closeInfoModal);
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && infoModal && infoModal.classList.contains('is-active')) {
+      closeInfoModal();
+    }
+  });
+
 })();

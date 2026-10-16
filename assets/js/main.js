@@ -482,24 +482,21 @@
       infoModalBody.innerHTML = `
         <div>
           <h4>Dénomination &amp; Raison Sociale</h4>
-          <p><strong>ENEANTECH Sarl</strong> — Société à Responsabilité Limitée d'ingénierie informatique, transformation digitale, réseaux &amp; télécoms et formations professionnelles.</p>
+          <p><strong>ENEANTECH Sarl</strong> — Société à Responsabilité Limitée d'ingénierie informatique, transformation digitale, réseaux &amp; télécoms et formations professionnelles certifiantes.</p>
         </div>
         <div>
-          <h4>Implantations &amp; Sièges opérationnels</h4>
-          <ul>
-            <li><strong>Siège Cameroun :</strong> Maroua-Pitoaré, Région de l'Extrême-Nord.</li>
-            <li><strong>Antenne Tchad :</strong> N'Djamena, Afrique Centrale.</li>
-          </ul>
+          <h4>Siège Social &amp; Localisation</h4>
+          <p>Maroua-Pitoaré, Région de l'Extrême-Nord, Cameroun.</p>
         </div>
         <div>
           <h4>Direction &amp; Contacts</h4>
           <p>Direction Générale : M. Noudjibe Martin<br>
           E-mail : <a href="mailto:eneantechnoudjibe@gmail.com" style="color:var(--cyan-400);">eneantechnoudjibe@gmail.com</a><br>
-          Téléphone / WhatsApp : +237 697 40 48 74 / +235 62 82 25 35</p>
+          Téléphone / WhatsApp : +237 697 40 48 74</p>
         </div>
         <div>
           <h4>Hébergement &amp; Sécurité</h4>
-          <p>Plateforme hébergée via infrastructure Cloud sécurisée avec chiffrement SSL/TLS de bout en bout et surveillance 24/7.</p>
+          <p>Plateforme hébergée via infrastructure Cloud haute disponibilité avec chiffrement SSL/TLS de bout en bout et surveillance 24/7.</p>
         </div>
       `;
     } else if (type === 'privacy') {

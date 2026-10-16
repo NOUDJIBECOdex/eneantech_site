@@ -715,7 +715,7 @@ p  { color: var(--text); }
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.16em;
-  color: #00d68f;
+  color: var(--cyan-400);
   text-transform: uppercase;
 }
 
@@ -773,18 +773,18 @@ p  { color: var(--text); }
   transform: translateX(3px);
 }
 
-/* Lien vert d'accentuation (Demande d'Étude / TDR) */
+/* Lien d'accentuation ENEANTECH (Demander un devis) */
 .footer__highlight-link {
-  color: #00e5a3 !important;
+  color: var(--cyan-400) !important;
   font-weight: 700 !important;
 }
 
 .footer__highlight-link:hover {
-  color: #6ee7b7 !important;
-  text-shadow: 0 0 12px rgba(0, 229, 163, 0.4);
+  color: var(--blue-300) !important;
+  text-shadow: 0 0 14px rgba(56, 189, 248, 0.45);
 }
 
-/* 3. Newsletter & Veille */
+/* 3. Newsletter & Actualités */
 .footer__newsletter-block {
   display: flex;
   flex-direction: column;
@@ -820,8 +820,8 @@ p  { color: var(--text); }
 }
 
 .footer__newsletter-box:focus-within {
-  border-color: #00d68f;
-  box-shadow: 0 0 0 3px rgba(0, 214, 143, 0.22);
+  border-color: var(--blue-500);
+  box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.25);
 }
 
 .footer__newsletter-input {
@@ -841,20 +841,21 @@ p  { color: var(--text); }
 }
 
 .footer__newsletter-btn {
-  background: #00b874;
+  background: var(--grad-brand);
   border: none;
   color: #ffffff;
   padding: 0.9rem 1.35rem;
   display: grid;
   place-items: center;
   cursor: pointer;
-  transition: background-color var(--t), transform var(--t);
+  transition: transform var(--t), box-shadow var(--t), filter var(--t);
   flex-shrink: 0;
 }
 
 .footer__newsletter-btn:hover {
-  background: #00d68f;
-  box-shadow: 0 0 16px rgba(0, 214, 143, 0.45);
+  filter: brightness(1.15);
+  box-shadow: 0 0 20px rgba(0, 102, 255, 0.55);
+  transform: scale(1.04);
 }
 
 .footer__newsletter-btn .ico {
@@ -872,9 +873,9 @@ p  { color: var(--text); }
 
 .footer__newsletter-msg.is-success {
   display: block;
-  background: rgba(34, 197, 94, 0.12);
-  border: 1px solid rgba(34, 197, 94, 0.35);
-  color: #4ade80;
+  background: rgba(0, 102, 255, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  color: var(--cyan-400);
 }
 
 /* 4. Suivez-nous */

@@ -650,16 +650,25 @@ p  { color: var(--text); }
   pointer-events: none;
 }
 
-.footer__inner {
-  display: flex;
-  flex-direction: column;
-  gap: 2.25rem;
+.footer .container {
+  width: min(100% - 2.5rem, 1300px);
+  margin-inline: auto;
 }
 
-/* 1. Bloc Marque */
-.footer__brand-block {
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.25rem 1.25rem;
+}
+
+.footer__col {
   display: flex;
   flex-direction: column;
+}
+
+/* 1. Colonne Marque */
+.footer__col--brand {
+  grid-column: 1 / -1;
   gap: 1.1rem;
 }
 
@@ -723,15 +732,24 @@ p  { color: var(--text); }
   color: var(--text-muted);
   font-size: 0.93rem;
   line-height: 1.65;
-  max-width: 54ch;
+  max-width: 52ch;
 }
 
-/* 2. Grille de navigation (2 colonnes côte à côte en mobile) */
-.footer__nav-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.75rem 1.25rem;
-  padding-block: 0.25rem;
+/* 2. Colonne Liens & 3. Colonne Légal */
+.footer__col--links {
+  grid-column: 1 / 2;
+}
+
+.footer__col--legal {
+  grid-column: 2 / 3;
+}
+
+/* 4. Colonne Newsletter & Suivez-nous */
+.footer__col--newsletter {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
 }
 
 .footer__heading {
@@ -1049,29 +1067,31 @@ p  { color: var(--text); }
 
 /* ---------- 14. RESPONSIVE & ACCESSIBILITÉ ---------- */
 @media (min-width: 992px) {
-  .footer__inner {
-    display: grid;
-    grid-template-columns: 1.35fr 1.15fr 1.3fr;
-    gap: 3.5rem;
+  .footer .container {
+    width: min(100% - 3.5rem, 1300px);
+  }
+  .footer__grid {
+    grid-template-columns: 1.35fr 1fr 0.92fr 1.6fr;
+    gap: clamp(1.75rem, 3.5vw, 3.75rem);
     align-items: start;
   }
-  .footer__brand-block {
-    grid-column: 1 / 2;
+  .footer__col--brand {
+    grid-column: auto;
   }
-  .footer__nav-grid {
-    grid-column: 2 / 3;
-    padding-block: 0;
+  .footer__col--links {
+    grid-column: auto;
   }
-  .footer__newsletter-block {
-    grid-column: 3 / 4;
+  .footer__col--legal {
+    grid-column: auto;
   }
-  .footer__social-block {
-    grid-column: 3 / 4;
-    margin-top: -0.5rem;
+  .footer__col--newsletter {
+    grid-column: auto;
+    gap: 1.75rem;
   }
   .footer__bottom {
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     text-align: left;
   }
 }

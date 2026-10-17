@@ -357,11 +357,67 @@
   /* ==========================================================================
      11. ENVOI DES FORMULAIRES (AJAX VERS FORMSPREE)
      ========================================================================== */
-  const handleFormSubmit = (form, submitBtn) => {
+  /* ==========================================================================
+     11. MODALE DE CONFIRMATION MODERNE & GESTION DES FORMULAIRES
+     ========================================================================== */
+  const confirmModal = $('#confirm-modal');
+  const confirmModalBackdrop = $('#confirm-modal-backdrop');
+  const confirmModalClose = $('#confirm-modal-close');
+  const confirmModalBtnClose = $('#confirm-modal-btn-close');
+  const confirmModalBadge = $('#confirm-modal-badge');
+  const confirmModalTitle = $('#confirm-modal-title');
+  const confirmModalDesc = $('#confirm-modal-desc');
+  const confirmModalWhatsapp = $('#confirm-modal-whatsapp');
+
+  const showConfirmationModal = ({
+    badge = 'Transmission réussie',
+    title = 'Demande transmise avec succès !',
+    description = 'Votre demande a bien été transmise à l\'équipe technique d\'ENEANTECH. Un consultant prendra contact avec vous très rapidement.',
+    whatsappMessage = 'Bonjour ENEANTECH, je viens de soumettre une demande sur votre site.',
+    isError = false
+  } = {}) => {
+    if (!confirmModal) return;
+
+    if (isError) {
+      confirmModal.classList.add('is-error');
+    } else {
+      confirmModal.classList.remove('is-error');
+    }
+
+    if (confirmModalBadge) confirmModalBadge.textContent = badge;
+    if (confirmModalTitle) confirmModalTitle.textContent = title;
+    if (confirmModalDesc) confirmModalDesc.textContent = description;
+
+    if (confirmModalWhatsapp) {
+      confirmModalWhatsapp.href = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+    }
+
+    confirmModal.classList.add('is-active');
+    confirmModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeConfirmationModal = () => {
+    if (!confirmModal) return;
+    confirmModal.classList.remove('is-active');
+    confirmModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
+
+  if (confirmModalClose) confirmModalClose.addEventListener('click', closeConfirmationModal);
+  if (confirmModalBtnClose) confirmModalBtnClose.addEventListener('click', closeConfirmationModal);
+  if (confirmModalBackdrop) confirmModalBackdrop.addEventListener('click', closeConfirmationModal);
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && confirmModal && confirmModal.classList.contains('is-active')) {
+      closeConfirmationModal();
+    }
+  });
+
+  const handleFormSubmit = (form, submitBtn, type = 'generic') => {
     if (!form || !submitBtn) return;
     form.addEventListener('submit', async e => {
       e.preventDefault();
-      const successEl = $('.form__success', form);
       const originalLabel = submitBtn.textContent;
 
       submitBtn.disabled = true;
@@ -377,16 +433,40 @@
 
         if (!res.ok) throw new Error('Erreur de transmission');
 
+        const serviceName = form.querySelector('[name="service"]')?.value || form.querySelector('[name="formation"]')?.value || 'un projet';
         form.reset();
-        if (successEl) {
-          successEl.classList.add('is-visible');
-          setTimeout(() => successEl.classList.remove('is-visible'), 9000);
+
+        if (type === 'devis') {
+          showConfirmationModal({
+            badge: 'Devis Chiffré en Préparation',
+            title: 'Demande de Devis Transmise !',
+            description: 'Merci ! Votre cahier des charges a bien été reçu. L\'équipe d\'ingénierie ENEANTECH analyse votre besoin pour vous transmettre une proposition technique chiffrée sous 24h ouvrées.',
+            whatsappMessage: `Bonjour ENEANTECH, je viens d'envoyer une demande de devis sur votre site pour : "${serviceName}". Pouvons-nous échanger ?`
+          });
+        } else if (type === 'inscription') {
+          showConfirmationModal({
+            badge: 'Inscription Enregistrée',
+            title: 'Bienvenue chez ENEANTECH !',
+            description: 'Votre inscription à la formation a été enregistrée avec succès. Notre responsable pédagogique prendra attache avec vous pour valider votre dossier et préparer votre rentrée.',
+            whatsappMessage: `Bonjour ENEANTECH, je viens de soumettre mon inscription pour la formation : "${serviceName}". Merci de m'indiquer la suite !`
+          });
+        } else {
+          showConfirmationModal({
+            badge: 'Transmission Réussie',
+            title: 'Message Envoyé avec Succès !',
+            description: 'Votre demande est bien arrivée dans notre boîte de réception. Un consultant ENEANTECH vous répondra très rapidement.',
+            whatsappMessage: 'Bonjour ENEANTECH, je viens de vous envoyer un message depuis votre site web.'
+          });
         }
+
       } catch (err) {
-        alert(
-          'Une erreur est survenue lors de l\'envoi via le serveur.\n' +
-          'Vous pouvez nous contacter directement sur WhatsApp (+237 697 48 40 74) ou par e-mail à ' + CONFIG.contactEmail
-        );
+        showConfirmationModal({
+          badge: 'Avis de Transmission',
+          title: 'Erreur réseau temporaire',
+          description: 'Un incident de connexion a empêché la validation automatique par le serveur. Vous pouvez nous transmettre votre demande directement sur WhatsApp en 1 clic.',
+          whatsappMessage: 'Bonjour ENEANTECH, j\'ai rencontré un souci pour valider mon formulaire sur le site, voici ma demande :',
+          isError: true
+        });
       } finally {
         submitBtn.disabled = false;
         submitBtn.textContent = originalLabel;
@@ -394,8 +474,8 @@
     });
   };
 
-  handleFormSubmit($('#devis-form'), $('#dv-submit'));
-  handleFormSubmit($('#inscription-form'), $('#ins-submit'));
+  handleFormSubmit($('#devis-form'), $('#dv-submit'), 'devis');
+  handleFormSubmit($('#inscription-form'), $('#ins-submit'), 'inscription');
 
   /* ==========================================================================
      12. DEVIS ENVOYÉ DIRECTEMENT SUR WHATSAPP
@@ -419,7 +499,7 @@
   }
 
   /* ==========================================================================
-     13. NEWSLETTER DU FOOTER (SOUMISSION AJAX)
+     13. NEWSLETTER DU FOOTER (SOUMISSION MODERNE AVEC POP-UP)
      ========================================================================== */
   const newsletterForm = $('#newsletter-form');
   const newsletterBtn = $('#newsletter-btn');
@@ -444,18 +524,23 @@
         if (!res.ok) throw new Error('Erreur transmission');
 
         newsletterForm.reset();
-        if (newsletterMsg) {
-          newsletterMsg.textContent = '✅ Merci ! Votre abonnement à notre veille est confirmé.';
-          newsletterMsg.className = 'footer__newsletter-msg is-success';
-          newsletterMsg.style.display = 'block';
-          setTimeout(() => { newsletterMsg.style.display = 'none'; }, 8000);
-        }
+        if (newsletterMsg) newsletterMsg.style.display = 'none';
+
+        showConfirmationModal({
+          badge: 'Veille Technologique Activée',
+          title: 'Abonnement Confirmé !',
+          description: 'Félicitations ! Vous recevrez directement par e-mail les actualités technologiques d\'ENEANTECH, nos innovations, nos lancements de projets et le calendrier des sessions certifiantes.',
+          whatsappMessage: 'Bonjour ENEANTECH, je viens de m\'abonner à votre newsletter technologique depuis le site.'
+        });
+
       } catch (err) {
-        if (newsletterMsg) {
-          newsletterMsg.textContent = '⚠️ Erreur de transmission. Vous pouvez nous écrire à eneantechnoudjibe@gmail.com';
-          newsletterMsg.className = 'footer__newsletter-msg';
-          newsletterMsg.style.display = 'block';
-        }
+        showConfirmationModal({
+          badge: 'Abonnement Newsletter',
+          title: 'Transmission ralentie',
+          description: 'Votre e-mail n\'a pas pu être validé instantanément par le serveur. Vous pouvez nous écrire directement sur WhatsApp pour être inscrit à la liste de diffusion.',
+          whatsappMessage: 'Bonjour ENEANTECH, je souhaite m\'inscrire à votre liste de diffusion newsletter.',
+          isError: true
+        });
       } finally {
         newsletterBtn.disabled = false;
         newsletterBtn.innerHTML = originalHtml;

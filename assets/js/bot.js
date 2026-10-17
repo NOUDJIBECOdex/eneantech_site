@@ -531,6 +531,33 @@ Les inscriptions se font en ligne ou directement à notre agence à Pitoaré.`,
       ]
     },
 
+    // 8.1 SAAS MÉTIER & PROJETS SUR-MESURE (EX: GESTION HÔTELIÈRE, GESTION COMMERCIALE, CLINIQUE)
+    {
+      id: 'saas_custom_software',
+      priority: 105,
+      patterns: [/saas/i, /gestion h[oô]teli[eè]re/i, /gestion d['\s]h[oô]tel/i, /logiciel de gestion/i, /application m[eé]tier/i, /plateforme sur[-]mesure/i, /erp/i, /crm/i],
+      responses: [
+        {
+          text: `Chez **ENEANTECH**, nous concevons des **plateformes SaaS et logiciels métiers sur-mesure** (ex: système de gestion hôtelière, ERP commercial, gestion scolaire, hospitalière ou logistique).
+
+🏨 **Exemple concret : Architecture d'un SaaS de Gestion Hôtelière**
+- **Modules clés :** Planning interactif des chambres & réservations, facturation & reçus PDF instantanés, point de vente (restaurant/bar), gestion des stocks et du ménage, alertes WhatsApp/SMS clients.
+- **Paiements intégrés :** Passerelles Mobile Money (Orange Money, MTN MoMo) + Cartes bancaires (Visa/Mastercard).
+- **Stack technique recommandée :** Frontend React / Next.js ultra-rapide, Backend Node.js ou Django / FastAPI, base PostgreSQL résiliente, hébergement Cloud sécurisé.
+
+💰 **Fourchette Budgétaire Indicative :**
+- **Version MVP opérationnelle :** 500 000 à 900 000 FCFA (livrable en 3 à 5 semaines).
+- **Plateforme SaaS avancée multi-établissements :** à partir de 1 400 000 FCFA avec maintenance et support 24/7.
+
+Nos ingénieurs Mbaihilamde Noudjibé et Agbo Martin peuvent réaliser l'étude technique détaillée de votre cahier des charges.`,
+          actions: [
+            { text: '📑 Demander une étude technique & devis', link: '#devis' },
+            { text: '💬 En discuter directement sur WhatsApp', whatsapp: 'Bonjour ENEANTECH, je souhaite échanger sur un projet de SaaS / logiciel métier (cahier des charges et chiffrage).' }
+          ]
+        }
+      ]
+    },
+
     // 8. DEVIS SITE WEB / LOGICIEL / SERVICES
     {
       id: 'devis_services',
@@ -1099,7 +1126,7 @@ N'hésitez pas si vous avez la moindre interrogation, ou venez nous rencontrer d
 
     async fetchAIResponse(text) {
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 6500);
+      const timeoutId = setTimeout(() => controller.abort(), 12000);
 
       try {
         const response = await fetch('/api/chat', {

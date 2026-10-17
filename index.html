@@ -8,15 +8,27 @@
   <meta name="description"
     content="ENEANTECH Sarl à Maroua-Pitoaré : solutions réseaux, développement web et logiciel, infographie, cybersécurité, IA et formations certifiantes. Former pour impacter, développer pour transformer." />
   <meta name="theme-color" content="#070a13" />
-  <link rel="icon" href="assets/images/logo/logo_eneantech.jpg" />
+  <!-- Favicons Officiels ENEANTECH (Chrome, Android, iOS, Vercel root) -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="msapplication-TileColor" content="#070a13" />
+  <meta name="msapplication-TileImage" content="/android-chrome-192x192.png" />
 
-  <!-- Open Graph -->
+  <!-- Open Graph & Partage Réseaux (WhatsApp, Facebook, Twitter, LinkedIn) -->
   <meta property="og:title" content="ENEANTECH Sarl — L'innovation numérique à votre portée" />
   <meta property="og:description"
-    content="Réseaux, développement web et logiciel, infographie, cybersécurité, IA et formations à Maroua." />
+    content="Réseaux, développement web et logiciel, infographie, cybersécurité, IA et formations certifiantes à Maroua." />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="fr_FR" />
-  <meta property="og:image" content="assets/images/services/hero.jpg" />
+  <meta property="og:image" content="assets/images/logo/logo_eneantech.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ENEANTECH Sarl — L'innovation numérique à votre portée" />
+  <meta name="twitter:description" content="Solutions réseaux, développement web/logiciel, infographie et formations certifiantes à Maroua." />
+  <meta name="twitter:image" content="assets/images/logo/logo_eneantech.jpg" />
 
   <!-- Typographie -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -1278,6 +1290,47 @@
             En parler sur WhatsApp
           </a>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== MODALE DE CONFIRMATION MODERNE ===================== -->
+  <div class="confirm-modal" id="confirm-modal" aria-hidden="true" role="dialog" aria-modal="true"
+    aria-labelledby="confirm-modal-title">
+    <div class="confirm-modal__backdrop" id="confirm-modal-backdrop"></div>
+    <div class="confirm-modal__dialog glass">
+      <button type="button" class="confirm-modal__close" id="confirm-modal-close" aria-label="Fermer la confirmation">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M18 6L6 18M6 6l12 12" />
+        </svg>
+      </button>
+
+      <div class="confirm-modal__icon-wrap">
+        <div class="confirm-modal__glow"></div>
+        <div class="confirm-modal__circle" id="confirm-modal-icon-circle">
+          <svg class="confirm-modal__check" viewBox="0 0 52 52" aria-hidden="true">
+            <circle class="confirm-modal__check-circle" cx="26" cy="26" r="23" fill="none" />
+            <path class="confirm-modal__check-path" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+          </svg>
+        </div>
+      </div>
+
+      <div class="confirm-modal__badge" id="confirm-modal-badge">Transmission réussie</div>
+      <h3 class="confirm-modal__title" id="confirm-modal-title">Demande transmise avec succès !</h3>
+      <p class="confirm-modal__desc" id="confirm-modal-desc">
+        Votre demande a bien été transmise à l'équipe technique d'ENEANTECH. Un consultant prendra contact avec vous très rapidement.
+      </p>
+
+      <div class="confirm-modal__actions">
+        <button type="button" class="btn btn--primary" id="confirm-modal-btn-close">
+          Continuer la navigation
+        </button>
+        <a href="https://wa.me/237697484074" target="_blank" rel="noopener" class="btn btn--ghost confirm-modal__whatsapp-btn" id="confirm-modal-whatsapp">
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M21 11.5a8.4 8.4 0 01-12.4 7.4L3 21l2.1-5.6A8.4 8.4 0 1121 11.5z" />
+          </svg>
+          Accélérer via WhatsApp
+        </a>
       </div>
     </div>
   </div>

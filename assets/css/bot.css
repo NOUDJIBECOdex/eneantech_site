@@ -651,12 +651,12 @@
 /* ---------- 4. RESPONSIVE ---------- */
 @media (max-width: 640px) {
   .bot-launcher {
-    bottom: 1.1rem;
-    right: 4.8rem;
+    bottom: 1rem;
+    right: 5.25rem; /* Espace net de 20px par rapport au bouton WhatsApp */
   }
   .bot-launcher__btn {
-    width: 50px;
-    height: 50px;
+    width: 48px;
+    height: 48px;
   }
   .bot-window {
     bottom: 0;

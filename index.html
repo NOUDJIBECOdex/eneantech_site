@@ -44,6 +44,45 @@
     content="Solutions réseaux, développement web/logiciel, infographie et formations certifiantes à Maroua." />
   <meta name="twitter:image" content="https://eneantechsite.vercel.app/assets/images/og-share.jpg" />
 
+  <!-- Données Structurées Google Schema.org (LocalBusiness & Knowledge Graph) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "ENEANTECH Sarl",
+    "image": "https://eneantechsite.vercel.app/assets/images/og-share.jpg",
+    "logo": "https://eneantechsite.vercel.app/apple-touch-icon.png",
+    "@id": "https://eneantechsite.vercel.app/#organization",
+    "url": "https://eneantechsite.vercel.app/",
+    "telephone": "+237697484074",
+    "email": "eneantechnoudjibe@gmail.com",
+    "priceRange": "25000 - 1500000 XAF",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Quartier Pitoaré",
+      "addressLocality": "Maroua",
+      "addressRegion": "Extrême-Nord",
+      "addressCountry": "CM"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 10.5956,
+      "longitude": 14.3247
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "opens": "08:00",
+      "closes": "18:00"
+    },
+    "sameAs": [
+      "https://www.facebook.com/profile.php?id=61572260336634",
+      "https://wa.me/237697484074"
+    ],
+    "description": "Entreprise d'ingénierie informatique, solutions réseaux, développement web/logiciel, infographie et formations professionnelles certifiantes à Maroua-Pitoaré."
+  }
+  </script>
+
   <!-- Typographie -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -73,7 +112,8 @@
         <a href="#portfolio" class="nav__link">Réalisations</a>
         <a href="#formations" class="nav__link">Formations</a>
         <a href="#tarifs" class="nav__link">Tarifs</a>
-        <a href="blog.html" class="nav__link nav__link--blog" title="Actualités &amp; Veille Technologique ENEANTECH"><span class="nav__dot"></span>Actualités</a>
+        <a href="blog.html" class="nav__link nav__link--blog"
+          title="Actualités &amp; Veille Technologique ENEANTECH"><span class="nav__dot"></span>Actualités</a>
         <a href="#apropos" class="nav__link">À propos</a>
         <a href="#contact" class="nav__link">Contact</a>
       </nav>
@@ -147,11 +187,13 @@
       </div>
       <div class="marquee" aria-hidden="true">
         <div class="marquee__track">
-          <!-- Groupe 1 (6 partenaires) -->
+          <!-- Groupe 1 (partenaires) -->
           <div class="partner partner--logo"><img src="assets/images/partners/c2m-consulting.jpg" alt="C-2M Consulting"
               loading="lazy" /><span>C-2M Consulting</span></div>
           <div class="partner partner--logo"><img src="assets/images/partners/isprof-maroua.jpg" alt="ISPROF Maroua"
               loading="lazy" /><span>ISPROF Maroua</span></div>
+          <div class="partner partner--logo"><img src="assets/images/partners/geosynergie.jpeg" alt="Geosynergie RCA-Tchad"
+              loading="lazy" /><span>Geosynergie RCA-Tchad</span></div>
           <div class="partner"><span class="partner__mark">SI</span><span>Sahel Innovation Hub</span></div>
           <div class="partner"><span class="partner__mark">TA</span><span>TechAfrik Solutions</span></div>
           <div class="partner"><span class="partner__mark">CD</span><span>Cameroun Digital Academy</span></div>
@@ -162,6 +204,8 @@
               loading="lazy" /><span>C-2M Consulting</span></div>
           <div class="partner partner--logo"><img src="assets/images/partners/isprof-maroua.jpg" alt="ISPROF Maroua"
               loading="lazy" /><span>ISPROF Maroua</span></div>
+          <div class="partner partner--logo"><img src="assets/images/partners/geosynergie.jpeg" alt="Geosynergie RCA-Tchad"
+              loading="lazy" /><span>Geosynergie RCA-Tchad</span></div>
           <div class="partner"><span class="partner__mark">SI</span><span>Sahel Innovation Hub</span></div>
           <div class="partner"><span class="partner__mark">TA</span><span>TechAfrik Solutions</span></div>
           <div class="partner"><span class="partner__mark">CD</span><span>Cameroun Digital Academy</span></div>
@@ -1130,7 +1174,8 @@
             <li><a href="#equipe">Notre Équipe</a></li>
             <li><a href="#formations">Formations Certifiantes</a></li>
             <li><a href="#tarifs">Tarifs &amp; Packs</a></li>
-            <li><a href="blog.html" class="footer__highlight-link" style="color:var(--cyan-400);">Actualités &amp; Blog 📰</a></li>
+            <li><a href="blog.html" class="footer__highlight-link" style="color:var(--cyan-400);">Actualités &amp; Blog
+                📰</a></li>
           </ul>
         </div>
 
@@ -1344,7 +1389,8 @@
         </button>
         <a href="blog.html" class="btn btn--outline confirm-modal__blog-btn" id="confirm-modal-blog-btn">
           <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+            <path
+              d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
           </svg>
           Consulter nos Actualités &amp; Articles
         </a>

@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# Déclaration officielle du plan de site pour Googlebot et Bingbot
+Sitemap: https://eneantechsite.vercel.app/sitemap.xml

@@ -1,0 +1,7 @@
+{
+  "name": "eneantech-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Site officiel et assistant IA ENEANTECH Sarl"
+}

@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Actualités &amp; Blog Tech | ENEANTECH Sarl — Innovation, Formations &amp; Réseaux à Maroua</title>
+  <meta name="description"
+    content="Découvrez les actualités, analyses techniques, opportunités d'emploi numérique et guides pratiques d'ENEANTECH Sarl à Maroua-Pitoaré (Cameroun)." />
+  <meta name="theme-color" content="#070a13" />
+
+  <!-- Favicons Officiels ENEANTECH (Chrome, Android, iOS, Vercel root) -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="msapplication-TileColor" content="#070a13" />
+  <meta name="msapplication-TileImage" content="/android-chrome-192x192.png" />
+
+  <!-- Open Graph & Partage Réseaux Sociaux (WhatsApp, Facebook, Twitter, LinkedIn) -->
+  <meta property="og:site_name" content="ENEANTECH Sarl" />
+  <meta property="og:title" content="Actualités &amp; Blog Tech — ENEANTECH Sarl Maroua" />
+  <meta property="og:description"
+    content="Analyses techniques, guides pratiques, opportunités numériques et annonces officielles d'ENEANTECH à Maroua." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://eneantechsite.vercel.app/blog.html" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:image" content="https://eneantechsite.vercel.app/assets/images/og-share.jpg" />
+  <meta property="og:image:secure_url" content="https://eneantechsite.vercel.app/assets/images/og-share.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="ENEANTECH Sarl — Blog officiel et actualités tech à Maroua" />
+
+  <link rel="image_src" href="https://eneantechsite.vercel.app/assets/images/og-square.jpg" />
+  <meta itemprop="image" content="https://eneantechsite.vercel.app/assets/images/og-square.jpg" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Actualités &amp; Blog Tech — ENEANTECH Sarl" />
+  <meta name="twitter:description"
+    content="Découvrez les actualités technologiques, formations certifiantes et innovations logicielles à Maroua." />
+  <meta name="twitter:image" content="https://eneantechsite.vercel.app/assets/images/og-share.jpg" />
+
+  <!-- Typographie -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/bot.css" />
+</head>
+
+<body>
+
+  <!-- Barre de progression de lecture -->
+  <div class="progress" id="progress" aria-hidden="true"></div>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="header" id="header">
+    <div class="header__bar">
+      <a href="index.html" class="brand" aria-label="ENEANTECH — Accueil">
+        <img class="brand__logo" src="assets/images/logo/logo_eneantech.jpg" alt="Logo ENEANTECH Sarl" width="42"
+          height="42" />
+        <span>ENEAN<em>TECH</em></span>
+      </a>
+
+      <nav class="nav" id="nav" aria-label="Navigation principale">
+        <a href="index.html" class="nav__link">Accueil</a>
+        <a href="index.html#services" class="nav__link">Services</a>
+        <a href="index.html#formations" class="nav__link">Formations</a>
+        <a href="index.html#tarifs" class="nav__link">Tarifs</a>
+        <a href="blog.html" class="nav__link is-active nav__link--blog" aria-current="page">
+          <span class="nav__dot"></span>Actualités
+        </a>
+        <a href="index.html#apropos" class="nav__link">À propos</a>
+        <a href="index.html#contact" class="nav__link">Contact</a>
+      </nav>
+
+      <div class="header__actions">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Changer le thème"
+          title="Basculer le mode clair / sombre">
+          <svg class="ico i-sun" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="5" />
+            <path
+              d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+          </svg>
+          <svg class="ico i-moon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+          </svg>
+        </button>
+
+        <a href="index.html#devis" class="btn btn--primary btn--sm header__cta">Demander un devis</a>
+
+        <button class="burger" id="burger" aria-label="Ouvrir le menu">
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== CONTENU PRINCIPAL ===================== -->
+  <main id="top">
+
+    <!-- 01. HERO DU BLOG -->
+    <section class="blog-hero">
+      <div class="container">
+        <div class="blog-hero__content">
+          <div class="badge">
+            <span class="badge__dot"></span>
+            BLOG &amp; VEILLE TECHNOLOGIQUE
+          </div>
+          <h1 class="blog-hero__title">
+            Actualités, Innovations &amp; <span class="text-gradient">Savoir-Faire Tech</span>
+          </h1>
+          <p class="blog-hero__desc">
+            Guides méthodologiques, retours d'expérience d'ingénieurs, décryptages du marché numérique camerounais et annonces exclusives d'ENEANTECH à Maroua-Pitoaré.
+          </p>
+        </div>
+
+        <!-- Filtres interactifs par catégorie -->
+        <div class="blog-filters" role="tablist" aria-label="Catégories d'articles">
+          <button type="button" class="blog-filter-btn is-active" data-filter="all">Tous les articles (4)</button>
+          <button type="button" class="blog-filter-btn" data-filter="reseaux">🌐 Réseaux &amp; Télécoms</button>
+          <button type="button" class="blog-filter-btn" data-filter="dev">💻 Dév Web &amp; SaaS</button>
+          <button type="button" class="blog-filter-btn" data-filter="cyber">🛡️ Cybersécurité</button>
+          <button type="button" class="blog-filter-btn" data-filter="carrieres">🚀 Formations &amp; Carrières</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02. ARTICLE À LA UNE (FEATURED) -->
+    <section class="blog-featured">
+      <div class="container">
+        <article class="blog-featured__card glass" data-category="reseaux">
+          <div class="blog-featured__media" data-article="fibre-optique-cisco-2026" style="cursor:pointer;">
+            <img src="assets/images/services/service-reseaux.jpg"
+              alt="Technicien manipulant un panneau de brassage et de la fibre optique" loading="lazy" />
+          </div>
+          <div class="blog-featured__content">
+            <div class="blog-meta">
+              <span class="badge badge--sm" style="background:rgba(6,182,212,0.15);color:var(--cyan-300);border-color:rgba(6,182,212,0.3);">
+                À LA UNE · FILIÈRE D'AVENIR
+              </span>
+              <span class="blog-meta__read">⏱️ 4 min</span>
+            </div>
+            <h2 class="blog-featured__title" data-article="fibre-optique-cisco-2026">
+              Pourquoi apprendre la Fibre Optique et les Réseaux Cisco en 2026 à Maroua ?
+            </h2>
+            <p class="blog-featured__excerpt">
+              Face à l'explosion du très haut débit dans le Grand Nord Cameroun, les entreprises et FAI recherchent désespérément des techniciens capables de souder la fibre à l'arc et de configurer des équipements Cisco et MikroTik. Découvrez pourquoi cette compétence est l'une des plus rentables du marché.
+            </p>
+            <div class="blog-author">
+              <img class="blog-author__avatar" src="assets/images/team/mohamadou.jpg" alt="Mohamadou" />
+              <div class="blog-author__info">
+                <span class="blog-author__name">Mohamadou</span>
+                <span class="blog-author__role">Ingénieur Télécoms &amp; Réseaux ENEANTECH · 15 Oct. 2026</span>
+              </div>
+            </div>
+            <div>
+              <button type="button" class="btn btn--primary" data-article="fibre-optique-cisco-2026">
+                Lire l'article complet →
+              </button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 03. GRILLE DES ARTICLES -->
+    <section class="blog-articles">
+      <div class="container">
+        <div class="blog-grid" id="blog-grid">
+
+          <!-- Article 2 : Dév & SaaS Mobile Money -->
+          <article class="blog-card glass" data-category="dev">
+            <div class="blog-card__media" data-article="saas-mobile-money-cameroun">
+              <span class="blog-card__badge">Dév Web &amp; SaaS</span>
+              <img src="assets/images/services/service-web.jpg"
+                alt="Code informatique et interface web sur écran" loading="lazy" />
+            </div>
+            <div class="blog-card__body">
+              <div class="blog-meta">
+                <span>12 Octobre 2026</span>
+                <span>·</span>
+                <span>⏱️ 5 min</span>
+              </div>
+              <h3 class="blog-card__title" data-article="saas-mobile-money-cameroun">
+                SaaS &amp; E-commerce au Cameroun : Comment intégrer Mobile Money (MTN &amp; Orange) en toute sécurité
+              </h3>
+              <p class="blog-card__desc">
+                En Afrique, 95% des transactions numériques passent par le Mobile Money. Découvrez les règles d'architecture logicielle, la gestion des webhooks et l'idempotence pour encaisser en ligne sans faille.
+              </p>
+              <div class="blog-card__footer">
+                <div class="blog-author">
+                  <img class="blog-author__avatar" src="assets/images/team/agbo-martin.jpg" alt="Agbo Martin" width="34" height="34" />
+                  <span class="blog-author__name" style="font-size:0.84rem;">Agbo Martin</span>
+                </div>
+                <button type="button" class="blog-read-btn" data-article="saas-mobile-money-cameroun">
+                  Lire →
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 3 : Cybersécurité PME -->
+          <article class="blog-card glass" data-category="cyber">
+            <div class="blog-card__media" data-article="cybersecurite-failles-pme">
+              <span class="blog-card__badge">Cybersécurité</span>
+              <img src="assets/images/services/hero.jpg"
+                alt="Serveur informatique sécurisé dans la pénombre" loading="lazy" />
+            </div>
+            <div class="blog-card__body">
+              <div class="blog-meta">
+                <span>08 Octobre 2026</span>
+                <span>·</span>
+                <span>⏱️ 6 min</span>
+              </div>
+              <h3 class="blog-card__title" data-article="cybersecurite-failles-pme">
+                Cybersécurité des PME : 5 failles critiques qui menacent les entreprises locales
+              </h3>
+              <p class="blog-card__desc">
+                Mots de passe uniques, absence de sauvegardes 3-2-1, Wi-Fi invité non compartimenté... Voici la liste des vulnérabilités qui mettent en péril des années de travail et comment y remédier.
+              </p>
+              <div class="blog-card__footer">
+                <div class="blog-author">
+                  <img class="blog-author__avatar" src="assets/images/team/noudjibe-martin.jpg" alt="Mbaihilamde Noudjibé" width="34" height="34" />
+                  <span class="blog-author__name" style="font-size:0.84rem;">Mbaihilamde N.</span>
+                </div>
+                <button type="button" class="blog-read-btn" data-article="cybersecurite-failles-pme">
+                  Lire →
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 4 : Reconversion Freelance -->
+          <article class="blog-card glass" data-category="carrieres">
+            <div class="blog-card__media" data-article="reconversion-freelance-maroua">
+              <span class="blog-card__badge">Carrières &amp; Freelance</span>
+              <img src="assets/images/services/service-infographie.jpg"
+                alt="Création graphique et design vectoriel sur écran" loading="lazy" />
+            </div>
+            <div class="blog-card__body">
+              <div class="blog-meta">
+                <span>01 Octobre 2026</span>
+                <span>·</span>
+                <span>⏱️ 4 min</span>
+              </div>
+              <h3 class="blog-card__title" data-article="reconversion-freelance-maroua">
+                Reconversion Numérique : Comment partir de zéro et décrocher son premier contrat freelance
+              </h3>
+              <p class="blog-card__desc">
+                Témoignage concret d'anciens apprenants ENEANTECH qui facturent aujourd'hui des clients internationaux depuis Maroua grâce à un portfolio orienté résultats et 80% de pratique en atelier.
+              </p>
+              <div class="blog-card__footer">
+                <div class="blog-author">
+                  <img class="blog-author__avatar" src="assets/images/team/ramdam-michel.jpeg" alt="Ramdam Michel" width="34" height="34" />
+                  <span class="blog-author__name" style="font-size:0.84rem;">Ramdam Michel</span>
+                </div>
+                <button type="button" class="blog-read-btn" data-article="reconversion-freelance-maroua">
+                  Lire →
+                </button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 04. BLOC NEWSLETTER INTÉGRÉ AU BLOG -->
+    <section class="section" style="padding-top:0;">
+      <div class="container">
+        <div class="glass form-card" style="max-width:820px;margin:0 auto;text-align:center;padding:clamp(2rem,4vw,3.5rem);">
+          <div class="badge" style="margin-bottom:1rem;">
+            <span class="badge__dot"></span>
+            NE MANQUEZ AUCUN ARTICLE
+          </div>
+          <h2 style="font-size:clamp(1.6rem,3vw,2.3rem);margin-bottom:0.8rem;">
+            Recevez nos analyses &amp; opportunités tech en avant-première
+          </h2>
+          <p class="muted" style="max-width:540px;margin:0 auto 2rem;font-size:1.02rem;">
+            Rejoignez les professionnels, étudiants et entrepreneurs abonnés à la veille stratégique d'ENEANTECH. Zéro spam, uniquement du savoir utile.
+          </p>
+
+          <form class="footer__newsletter-form" id="blog-newsletter-form" action="https://formspree.io/f/mqabwajw" method="POST" style="max-width:520px;margin:0 auto;">
+            <input type="hidden" name="_subject" value="Nouvel abonné Newsletter (depuis le Blog) — ENEANTECH" />
+            <div class="footer__newsletter-box">
+              <input class="footer__newsletter-input" name="email" type="email" placeholder="Entrez votre adresse email" required aria-label="Votre email" />
+              <button type="submit" class="footer__newsletter-btn" id="blog-newsletter-btn" aria-label="S'abonner">
+                <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__col footer__col--brand">
+          <a href="index.html" class="footer__brand-link">
+            <div class="footer__logo-badge">
+              <img src="assets/images/logo/logo_eneantech.jpg" alt="Logo ENEANTECH Sarl" width="48" height="48" />
+            </div>
+            <div class="footer__brand-meta">
+              <span class="footer__brand-title">ENEANTECH <small style="font-size:0.65em;font-weight:600;opacity:0.85;">SARL</small></span>
+              <span class="footer__brand-subtitle">INNOVATION &amp; DIGITAL</span>
+            </div>
+          </a>
+          <p class="footer__brand-desc">
+            Entreprise technologique spécialisée en ingénierie logicielle, infrastructures réseaux, cybersécurité et formations professionnelles certifiantes à Maroua-Pitoaré.
+          </p>
+        </div>
+
+        <div class="footer__col footer__col--links">
+          <h3 class="footer__heading">NAVIGATION</h3>
+          <ul class="footer__nav-list">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="index.html#services">Nos Services</a></li>
+            <li><a href="index.html#formations">Formations Certifiantes</a></li>
+            <li><a href="index.html#tarifs">Tarifs &amp; Packs</a></li>
+            <li><a href="blog.html" class="footer__highlight-link" style="color:var(--cyan-400);">Actualités &amp; Blog 📰</a></li>
+            <li><a href="index.html#devis">Demander un devis →</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col footer__col--legal">
+          <h3 class="footer__heading">CONTACT</h3>
+          <p style="color:var(--text-muted);font-size:0.92rem;line-height:1.7;">
+            📍 Quartier Pitoaré, Maroua, Cameroun<br>
+            📞 WhatsApp : +237 697 48 40 74<br>
+            ✉️ Email : eneantechnoudjibe@gmail.com
+          </p>
+        </div>
+
+        <div class="footer__col footer__col--newsletter">
+          <h3 class="footer__heading">RESTEZ CONNECTÉ</h3>
+          <p class="footer__newsletter-desc">
+            Suivez le développement de l'écosystème numérique camerounais avec nos experts.
+          </p>
+          <a href="https://wa.me/237697484074?text=Bonjour%20ENEANTECH%2C%20je%20souhaite%20%C3%A9changer%20avec%20un%20conseiller"
+            target="_blank" rel="noopener" class="btn btn--outline btn--sm" style="width:100%;justify-content:center;">
+            💬 Échanger directement sur WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p>© 2026 ENEANTECH Sarl. Tous droits réservés.</p>
+        <p>Former pour impacter, développer pour transformer.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== MODALE DE LECTURE D'ARTICLE ===================== -->
+  <div class="article-modal" id="article-modal" aria-hidden="true" role="dialog" aria-modal="true"
+    aria-labelledby="article-modal-title">
+    <div class="article-modal__backdrop" id="article-modal-backdrop"></div>
+    <div class="article-modal__dialog glass">
+      <button type="button" class="article-modal__close" id="article-modal-close" aria-label="Fermer l'article">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M18 6L6 18M6 6l12 12" />
+        </svg>
+      </button>
+
+      <img class="article-modal__cover" id="article-modal-cover" src="" alt="Couverture de l'article" />
+
+      <div class="article-modal__header">
+        <div class="blog-meta">
+          <span class="badge badge--sm" id="article-modal-tag" style="background:rgba(6,182,212,0.15);color:var(--cyan-300);border-color:rgba(6,182,212,0.3);">
+            Catégorie
+          </span>
+          <span id="article-modal-date">Date</span>
+          <span>·</span>
+          <span id="article-modal-read">⏱️ 5 min</span>
+        </div>
+        <h3 class="article-modal__title" id="article-modal-title">Titre de l'article</h3>
+
+        <div class="blog-author" style="margin-top:0.5rem;padding-bottom:1rem;border-bottom:1px solid var(--border);">
+          <img class="blog-author__avatar" id="article-modal-author-img" src="" alt="Auteur" />
+          <div class="blog-author__info">
+            <span class="blog-author__name" id="article-modal-author-name">Auteur</span>
+            <span class="blog-author__role" id="article-modal-author-role">Poste chez ENEANTECH</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="article-modal__body" id="article-modal-body">
+        <!-- Corps injecté dynamiquement -->
+      </div>
+
+      <div class="article-modal__actions">
+        <a href="index.html#formations" class="btn btn--primary" id="article-modal-action-btn">
+          Passer à l'action
+        </a>
+        <a href="" target="_blank" rel="noopener" class="btn btn--ghost" id="article-modal-wa-btn" style="color:#25d366;border-color:rgba(37,211,102,0.35);">
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+            <path d="M21 11.5a8.4 8.4 0 01-12.4 7.4L3 21l2.1-5.6A8.4 8.4 0 1121 11.5z" />
+          </svg>
+          Partager / Échanger sur WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== MODALE DE CONFIRMATION NEWSLETTER ===================== -->
+  <div class="confirm-modal" id="confirm-modal" aria-hidden="true" role="dialog" aria-modal="true"
+    aria-labelledby="confirm-modal-title">
+    <div class="confirm-modal__backdrop" id="confirm-modal-backdrop"></div>
+    <div class="confirm-modal__dialog glass">
+      <button type="button" class="confirm-modal__close" id="confirm-modal-close" aria-label="Fermer la confirmation">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M18 6L6 18M6 6l12 12" />
+        </svg>
+      </button>
+
+      <div class="confirm-modal__icon-wrap">
+        <div class="confirm-modal__glow"></div>
+        <div class="confirm-modal__circle">
+          <svg class="confirm-modal__check" viewBox="0 0 52 52" aria-hidden="true">
+            <circle class="confirm-modal__check-circle" cx="26" cy="26" r="23" fill="none" />
+            <path class="confirm-modal__check-path" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+          </svg>
+        </div>
+      </div>
+
+      <div class="confirm-modal__badge">Abonnement Confirmé</div>
+      <h3 class="confirm-modal__title" id="confirm-modal-title">Bienvenue dans notre réseau !</h3>
+      <p class="confirm-modal__desc" id="confirm-modal-desc">
+        Votre adresse e-mail a bien été enregistrée. Vous recevrez nos prochaines études, astuces tech et le calendrier de nos sessions de formation.
+      </p>
+
+      <div class="confirm-modal__actions">
+        <button type="button" class="btn btn--primary" id="confirm-modal-btn-close">
+          Continuer la lecture
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== BOUTONS FLOTTANTS ===================== -->
+  <div class="fab">
+    <button class="fab__top" id="scroll-top" aria-label="Remonter en haut">
+      <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 19V5M5 12l7-7 7 7" />
+      </svg>
+    </button>
+    <a class="fab__whatsapp"
+      href="https://wa.me/237697484074?text=Bonjour%20ENEANTECH%2C%20je%20viens%20de%20consulter%20votre%20Blog%20d%27actualit%C3%A9s"
+      target="_blank" rel="noopener" aria-label="Discuter sur WhatsApp" id="fab-whatsapp">
+      <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M21 11.5a8.4 8.4 0 01-12.4 7.4L3 21l2.1-5.6A8.4 8.4 0 1121 11.5z" />
+      </svg>
+    </a>
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/blog.js" defer></script>
+  <script src="assets/js/bot.js" defer></script>
+</body>
+
+</html>

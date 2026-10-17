@@ -58,8 +58,14 @@ export default async function handler(req, res) {
     return res.status(200).end();
   }
 
-  // 3. Vérification de la clé secrète Vercel
-  const apiKey = process.env.GEMINI_API_KEY;
+  // 3. Vérification de la clé secrète Vercel (tolérance multi-noms pour éviter tout blocage)
+  const apiKey =
+    process.env.GEMINI_API_KEY ||
+    process.env['Clé API GEMINI'] ||
+    process.env['CLE_API_GEMINI'] ||
+    process.env['Cle API GEMINI'] ||
+    process.env.GOOGLE_API_KEY ||
+    process.env.GEMINI;
   if (!apiKey) {
     // Si la clé n'est pas encore saisie sur Vercel, signale au frontend d'utiliser le moteur local
     return res.status(200).json({

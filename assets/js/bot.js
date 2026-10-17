@@ -1083,7 +1083,7 @@ N'hésitez pas si vous avez la moindre interrogation, ou venez nous rencontrer d
       }
     }
 
-    handleUserMessage(text) {
+    async handleUserMessage(text) {
       // 1. Ajouter le message utilisateur au DOM
       this.appendUserMessage(text);
       sfx.playSend();
@@ -1093,8 +1093,50 @@ N'hésitez pas si vous avez la moindre interrogation, ou venez nous rencontrer d
       // 2. Afficher indicateur de frappe
       this.showTyping();
 
-      // 3. Simuler réflexion de l'IA (délai réaliste de 450 à 750ms)
-      const thinkTime = Math.floor(Math.random() * 300) + 450;
+      // 3. Appel Hybride : D'abord le Proxy Sécurisé Vercel (/api/chat), sinon le moteur local
+      await this.fetchAIResponse(text);
+    }
+
+    async fetchAIResponse(text) {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 6500);
+
+      try {
+        const response = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            message: text,
+            history: this.history.slice(-4)
+          }),
+          signal: controller.signal
+        });
+
+        clearTimeout(timeoutId);
+
+        if (response.ok) {
+          const data = await response.json();
+          if (data && data.success && data.text) {
+            this.hideTyping();
+            this.sendBotReply({
+              text: data.text,
+              actions: [
+                { text: '💬 Poursuivre sur WhatsApp', whatsapp: `Bonjour ENEANTECH, suite à mon échange avec EneanBot au sujet de : "${text.slice(0, 50)}", je souhaite échanger avec vous.` },
+                { text: '🎓 Découvrir les formations', link: '#formations' },
+                { text: '💼 Demander un devis', link: '#devis' }
+              ]
+            }, true);
+            return;
+          }
+        }
+      } catch (err) {
+        // En cas d'environnement local sans serveur Vercel, timeout ou 404
+      } finally {
+        clearTimeout(timeoutId);
+      }
+
+      // Si l'API Vercel n'est pas configurée ou indisponible -> Relais instantané par la base locale
+      const thinkTime = Math.floor(Math.random() * 200) + 300;
       setTimeout(() => {
         this.hideTyping();
         const reply = findBestResponse(text);

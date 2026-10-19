@@ -57,9 +57,24 @@ RÈGLES DE CYBERSÉCURITÉ :
 const rateLimitMap = new Map();
 const RATE_LIMIT_WINDOW_MS = 60 * 1000;
 const MAX_REQUESTS_PER_WINDOW = 10;
+const MAX_MAP_SIZE = 1000;
+
+function cleanupRateLimits(now) {
+  for (const [key, record] of rateLimitMap.entries()) {
+    if (now > record.resetAt) {
+      rateLimitMap.delete(key);
+    }
+  }
+  if (rateLimitMap.size > MAX_MAP_SIZE) {
+    rateLimitMap.clear();
+  }
+}
 
 function isRateLimited(ip) {
   const now = Date.now();
+  if (rateLimitMap.size > MAX_MAP_SIZE) {
+    cleanupRateLimits(now);
+  }
   const record = rateLimitMap.get(ip);
   if (!record) {
     rateLimitMap.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
@@ -71,6 +86,30 @@ function isRateLimited(ip) {
   }
   record.count += 1;
   return record.count > MAX_REQUESTS_PER_WINDOW;
+}
+
+// Vérification stricte des origines CORS autorisées
+function isAllowedOrigin(origin, host) {
+  if (!origin) return true;
+  try {
+    const parsed = new URL(origin);
+    const hostname = parsed.hostname.toLowerCase();
+    if (host) {
+      const cleanHost = host.split(':')[0].toLowerCase();
+      if (hostname === cleanHost) return true;
+    }
+    if (
+      hostname === 'eneantechsite.vercel.app' ||
+      hostname === 'eneantech.com' ||
+      hostname === 'www.eneantech.com' ||
+      hostname === 'localhost' ||
+      hostname === '127.0.0.1' ||
+      hostname.endsWith('.vercel.app')
+    ) {
+      return true;
+    }
+  } catch (_) {}
+  return false;
 }
 
 // Pare-feu anti-injection et anti-jailbreak (bloque sans consommer de tokens API)
@@ -86,25 +125,43 @@ const INJECTION_PATTERNS = [
 ];
 
 export default async function handler(req, res) {
-  // 1. Autoriser uniquement la méthode POST
-  if (req.method !== 'POST') {
-    res.setHeader('Allow', 'POST');
-    return res.status(405).json({ success: false, error: 'Method Not Allowed' });
+  const origin = req.headers['origin'];
+  const host = req.headers['host'];
+
+  // 1. Validation stricte de l'origine CORS
+  if (origin) {
+    if (isAllowedOrigin(origin, host)) {
+      res.setHeader('Access-Control-Allow-Origin', origin);
+      res.setHeader('Vary', 'Origin');
+    } else {
+      return res.status(403).json({ success: false, error: 'Origine non autorisée.' });
+    }
   }
 
   // 2. Headers de sécurité renforcés
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('X-Frame-Options', 'DENY');
-  res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
+  // Gestion du pré-vol CORS OPTIONS
   if (req.method === 'OPTIONS') {
-    return res.status(200).end();
+    return res.status(204).end();
+  }
+
+  // Autoriser uniquement la méthode POST
+  if (req.method !== 'POST') {
+    res.setHeader('Allow', 'POST, OPTIONS');
+    return res.status(405).json({ success: false, error: 'Method Not Allowed' });
   }
 
   // 3. Détection et limitation du débit par IP (Anti-DDoS / Anti-bot spam)
-  const clientIp = (req.headers['x-forwarded-for'] || '').split(',')[0].trim() || req.headers['x-real-ip'] || req.socket?.remoteAddress || 'unknown';
+  const forwardedFor = req.headers['x-forwarded-for'];
+  const clientIp = (forwardedFor ? forwardedFor.split(',')[0].trim() : '') ||
+    req.headers['x-real-ip'] ||
+    req.socket?.remoteAddress ||
+    'unknown';
+
   if (isRateLimited(clientIp)) {
     return res.status(429).json({
       success: false,
@@ -112,7 +169,7 @@ export default async function handler(req, res) {
     });
   }
 
-  // 4. Vérification de la clé secrète Vercel (tolérance multi-noms pour éviter tout blocage)
+  // 4. Vérification de la clé secrète Vercel
   const apiKey =
     process.env.GEMINI_API_KEY ||
     process.env['Clé API GEMINI'] ||
@@ -120,8 +177,8 @@ export default async function handler(req, res) {
     process.env['Cle API GEMINI'] ||
     process.env.GOOGLE_API_KEY ||
     process.env.GEMINI;
+
   if (!apiKey) {
-    // Si la clé n'est pas encore saisie sur Vercel, signale au frontend d'utiliser le moteur local
     return res.status(200).json({
       success: false,
       fallback: true,
@@ -130,15 +187,26 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { message, history } = req.body || {};
+    let body = req.body;
+    if (typeof body === 'string') {
+      try {
+        body = JSON.parse(body);
+      } catch (_) {
+        return res.status(400).json({ success: false, error: 'Format JSON invalide.' });
+      }
+    }
+
+    const { message, history } = body || {};
 
     // Validation et assainissement de l'entrée
     if (!message || typeof message !== 'string') {
       return res.status(400).json({ success: false, error: 'Message manquant ou invalide.' });
     }
 
+    // Tronquage immédiat avant regex (protection anti-ReDoS)
+    const truncated = message.slice(0, 500);
     // Nettoyage des caractères de contrôle malveillants et limitation à 400 caractères
-    const sanitized = message.replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, '').trim().slice(0, 400);
+    const sanitized = truncated.replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, '').trim().slice(0, 400);
     if (sanitized.length === 0) {
       return res.status(400).json({ success: false, error: 'Message vide.' });
     }
@@ -155,7 +223,7 @@ export default async function handler(req, res) {
 
     const cleanMessage = sanitized;
 
-    // 4. Construction de l'historique de conversation (limité aux 4 derniers échanges)
+    // Construction de l'historique de conversation (limité aux 4 derniers échanges)
     const contents = [];
     if (Array.isArray(history)) {
       const recentHistory = history.slice(-4);
@@ -164,10 +232,14 @@ export default async function handler(req, res) {
           const role = item.sender === 'user' ? 'user' : 'model';
           const text = typeof item.content === 'string' ? item.content : item.content.text || '';
           if (text) {
-            contents.push({
-              role,
-              parts: [{ text: text.slice(0, 350) }]
-            });
+            // Nettoyage et limitation stricte de chaque échange
+            const safeText = String(text).slice(0, 350).replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, '');
+            if (safeText) {
+              contents.push({
+                role,
+                parts: [{ text: safeText }]
+              });
+            }
           }
         }
       }
@@ -179,12 +251,16 @@ export default async function handler(req, res) {
       parts: [{ text: cleanMessage }]
     });
 
-    // 5. Appel direct de l'API Google AI Studio (Gemini 1.5 Flash - ultra-rapide et gratuit)
-    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+    // 5. Appel direct et sécurisé de l'API Google Gemini
+    // Transmise via le header x-goog-api-key (standard OWASP : pas de clé exposée en paramètre d'URL)
+    const geminiUrl = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent';
 
     const apiResponse = await fetch(geminiUrl, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'x-goog-api-key': apiKey
+      },
       body: JSON.stringify({
         system_instruction: {
           parts: [{ text: SYSTEM_PROMPT }]
@@ -199,9 +275,8 @@ export default async function handler(req, res) {
     });
 
     if (!apiResponse.ok) {
-      const errText = await apiResponse.text();
-      console.error('Erreur API Gemini Google:', apiResponse.status, errText);
-      // En cas d'erreur de quota ou autre chez Google, retour doux avec fallback
+      const errStatus = apiResponse.status;
+      console.error('Erreur API Gemini Google:', errStatus);
       return res.status(200).json({
         success: false,
         fallback: true,
@@ -228,7 +303,7 @@ export default async function handler(req, res) {
     });
 
   } catch (error) {
-    console.error('Erreur interne serveur Vercel:', error);
+    console.error('Erreur interne serveur Vercel:', error?.message || 'Unknown error');
     return res.status(200).json({
       success: false,
       fallback: true,

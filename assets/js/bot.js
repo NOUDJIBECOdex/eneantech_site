@@ -811,12 +811,21 @@ N'hésitez pas si vous avez la moindre interrogation, ou venez nous rencontrer d
     return FALLBACK_RESPONSE;
   }
 
-  /* Formateur Markdown simple et sécurisé */
-  function formatMarkdown(text) {
-    let out = text
+  /* Fonction d'échappement HTML universelle anti-XSS */
+  function escapeHtml(str) {
+    if (str === null || str === undefined) return '';
+    return String(str)
       .replace(/&/g, '&amp;')
       .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;');
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
+  /* Formateur Markdown simple et sécurisé */
+  function formatMarkdown(text) {
+    if (!text || typeof text !== 'string') return '';
+    let out = escapeHtml(text);
 
     // Gras : **texte**
     out = out.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
@@ -1040,13 +1049,21 @@ N'hésitez pas si vous avez la moindre interrogation, ou venez nous rencontrer d
           this.handleUserMessage(query);
         } else if (link) {
           this.close();
-          const targetEl = document.querySelector(link);
-          if (targetEl) targetEl.scrollIntoView({ behavior: 'smooth' });
+          if (link.startsWith('#') && /^[a-zA-Z0-9_\-#]+$/.test(link)) {
+            try {
+              const targetEl = document.querySelector(link);
+              if (targetEl) targetEl.scrollIntoView({ behavior: 'smooth' });
+            } catch (_) {}
+          }
         } else if (wa) {
-          const url = `https://wa.me/${BOT_CONFIG.whatsappNumber}?text=${encodeURIComponent(wa)}`;
+          const safeNum = encodeURIComponent(BOT_CONFIG.whatsappNumber);
+          const url = `https://wa.me/${safeNum}?text=${encodeURIComponent(wa)}`;
           window.open(url, '_blank', 'noopener,noreferrer');
         } else if (tel) {
-          window.location.href = `tel:${tel}`;
+          const cleanTel = tel.replace(/[^0-9+]/g, '');
+          if (cleanTel) {
+            window.location.href = `tel:${cleanTel}`;
+          }
         }
       });
 
@@ -1177,7 +1194,7 @@ N'hésitez pas si vous avez la moindre interrogation, ou venez nous rencontrer d
       div.className = 'bot-msg bot-msg--user';
       div.innerHTML = `
         <div class="bot-msg__bubble">
-          ${text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}
+          ${escapeHtml(text)}
           <div class="bot-msg__time">${time}</div>
         </div>
       `;
@@ -1195,17 +1212,25 @@ N'hésitez pas si vous avez la moindre interrogation, ou venez nous rencontrer d
         replyObj.actions.forEach(a => {
           let extraAttrs = '';
           let isWa = false;
-          if (a.query) extraAttrs = `data-query="${a.query.replace(/"/g, '&quot;')}"`;
-          else if (a.link) extraAttrs = `data-link="${a.link}"`;
-          else if (a.whatsapp) {
-            extraAttrs = `data-whatsapp="${a.whatsapp.replace(/"/g, '&quot;')}"`;
+          if (a.query) {
+            extraAttrs = `data-query="${escapeHtml(a.query)}"`;
+          } else if (a.link) {
+            const cleanLink = String(a.link).trim();
+            if (cleanLink.startsWith('#')) {
+              extraAttrs = `data-link="${escapeHtml(cleanLink)}"`;
+            }
+          } else if (a.whatsapp) {
+            extraAttrs = `data-whatsapp="${escapeHtml(a.whatsapp)}"`;
             isWa = true;
-          } else if (a.tel) extraAttrs = `data-tel="${a.tel}"`;
+          } else if (a.tel) {
+            const cleanTel = String(a.tel).replace(/[^0-9+]/g, '');
+            extraAttrs = `data-tel="${escapeHtml(cleanTel)}"`;
+          }
 
           actionsHtml += `
             <button class="bot-action-btn ${isWa ? 'bot-action-btn--wa' : ''}" ${extraAttrs}>
               ${isWa ? '<svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12"><path d="M21 11.5a8.4 8.4 0 01-12.4 7.4L3 21l2.1-5.6A8.4 8.4 0 1121 11.5z"/></svg>' : ''}
-              ${a.text}
+              ${escapeHtml(a.text || '')}
             </button>
           `;
         });

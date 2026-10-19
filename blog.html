@@ -68,15 +68,49 @@
       </a>
 
       <nav class="nav" id="nav" aria-label="Navigation principale">
-        <a href="index.html" class="nav__link">Accueil</a>
-        <a href="index.html#services" class="nav__link">Services</a>
-        <a href="index.html#formations" class="nav__link">Formations</a>
-        <a href="index.html#tarifs" class="nav__link">Tarifs</a>
+        <!-- Menu déroulant Solutions (Services, Réalisations, Tarifs) -->
+        <div class="nav__item" id="nav-solutions">
+          <button type="button" class="nav__link nav__link--dropdown" id="solutions-btn" aria-expanded="false" aria-haspopup="true">
+            Solutions
+            <svg class="nav__chevron" viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </button>
+          <div class="nav__dropdown-menu" role="menu" aria-labelledby="solutions-btn">
+            <a href="index.html#services" class="nav__dropdown-item" role="menuitem">
+              <span class="nav__dropdown-icon">⚡</span>
+              <div class="nav__dropdown-text">
+                <span class="nav__dropdown-title">Services &amp; Ingénierie</span>
+                <span class="nav__dropdown-desc">Réseaux, fibre, logiciels &amp; cloud</span>
+              </div>
+            </a>
+            <a href="index.html#portfolio" class="nav__dropdown-item" role="menuitem">
+              <span class="nav__dropdown-icon">💼</span>
+              <div class="nav__dropdown-text">
+                <span class="nav__dropdown-title">Réalisations</span>
+                <span class="nav__dropdown-desc">Études de cas &amp; projets clients</span>
+              </div>
+            </a>
+            <a href="index.html#tarifs" class="nav__dropdown-item" role="menuitem">
+              <span class="nav__dropdown-icon">🏷️</span>
+              <div class="nav__dropdown-text">
+                <span class="nav__dropdown-title">Tarifs &amp; Forfaits</span>
+                <span class="nav__dropdown-desc">Packs clairs et transparents</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <a href="formations.html" class="nav__link nav__link--formations" title="Formations certifiantes ENEANTECH Academy">
+          Formations
+          <span class="nav__pill">En ligne</span>
+        </a>
+
         <a href="blog.html" class="nav__link is-active nav__link--blog" aria-current="page">
           <span class="nav__dot"></span>Actualités
         </a>
+
         <a href="index.html#apropos" class="nav__link">À propos</a>
-        <a href="index.html#contact" class="nav__link">Contact</a>
       </nav>
 
       <div class="header__actions">
@@ -350,7 +384,7 @@
             Suivez le développement de l'écosystème numérique camerounais avec nos experts.
           </p>
           <a href="https://wa.me/237697484074?text=Bonjour%20ENEANTECH%2C%20je%20souhaite%20%C3%A9changer%20avec%20un%20conseiller"
-            target="_blank" rel="noopener" class="btn btn--outline btn--sm" style="width:100%;justify-content:center;">
+            target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm" style="width:100%;justify-content:center;">
             💬 Échanger directement sur WhatsApp
           </a>
         </div>
@@ -404,7 +438,7 @@
         <a href="index.html#formations" class="btn btn--primary" id="article-modal-action-btn">
           Passer à l'action
         </a>
-        <a href="" target="_blank" rel="noopener" class="btn btn--ghost" id="article-modal-wa-btn" style="color:#25d366;border-color:rgba(37,211,102,0.35);">
+        <a href="" target="_blank" rel="noopener noreferrer" class="btn btn--ghost" id="article-modal-wa-btn" style="color:#25d366;border-color:rgba(37,211,102,0.35);">
           <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
             <path d="M21 11.5a8.4 8.4 0 01-12.4 7.4L3 21l2.1-5.6A8.4 8.4 0 1121 11.5z" />
           </svg>
@@ -458,7 +492,7 @@
     </button>
     <a class="fab__whatsapp"
       href="https://wa.me/237697484074?text=Bonjour%20ENEANTECH%2C%20je%20viens%20de%20consulter%20votre%20Blog%20d%27actualit%C3%A9s"
-      target="_blank" rel="noopener" aria-label="Discuter sur WhatsApp" id="fab-whatsapp">
+      target="_blank" rel="noopener noreferrer" aria-label="Discuter sur WhatsApp" id="fab-whatsapp">
       <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
         <path d="M21 11.5a8.4 8.4 0 01-12.4 7.4L3 21l2.1-5.6A8.4 8.4 0 1121 11.5z" />
       </svg>

@@ -108,14 +108,48 @@
       </a>
 
       <nav class="nav" id="nav" aria-label="Navigation principale">
-        <a href="#services" class="nav__link">Services</a>
-        <a href="#portfolio" class="nav__link">Réalisations</a>
-        <a href="#formations" class="nav__link">Formations</a>
-        <a href="#tarifs" class="nav__link">Tarifs</a>
+        <!-- Menu déroulant Solutions (Services, Réalisations, Tarifs) -->
+        <div class="nav__item" id="nav-solutions">
+          <button type="button" class="nav__link nav__link--dropdown" id="solutions-btn" aria-expanded="false" aria-haspopup="true">
+            Solutions
+            <svg class="nav__chevron" viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </button>
+          <div class="nav__dropdown-menu" role="menu" aria-labelledby="solutions-btn">
+            <a href="#services" class="nav__dropdown-item" role="menuitem">
+              <span class="nav__dropdown-icon">⚡</span>
+              <div class="nav__dropdown-text">
+                <span class="nav__dropdown-title">Services &amp; Ingénierie</span>
+                <span class="nav__dropdown-desc">Réseaux, fibre, logiciels &amp; cloud</span>
+              </div>
+            </a>
+            <a href="#portfolio" class="nav__dropdown-item" role="menuitem">
+              <span class="nav__dropdown-icon">💼</span>
+              <div class="nav__dropdown-text">
+                <span class="nav__dropdown-title">Réalisations</span>
+                <span class="nav__dropdown-desc">Études de cas &amp; projets clients</span>
+              </div>
+            </a>
+            <a href="#tarifs" class="nav__dropdown-item" role="menuitem">
+              <span class="nav__dropdown-icon">🏷️</span>
+              <div class="nav__dropdown-text">
+                <span class="nav__dropdown-title">Tarifs &amp; Forfaits</span>
+                <span class="nav__dropdown-desc">Packs clairs et transparents</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <a href="formations.html" class="nav__link nav__link--formations" title="Formations certifiantes ENEANTECH Academy">
+          Formations
+          <span class="nav__pill">En ligne</span>
+        </a>
+
         <a href="blog.html" class="nav__link nav__link--blog"
           title="Actualités &amp; Veille Technologique ENEANTECH"><span class="nav__dot"></span>Actualités</a>
+
         <a href="#apropos" class="nav__link">À propos</a>
-        <a href="#contact" class="nav__link">Contact</a>
       </nav>
 
       <div class="header__actions">
@@ -192,8 +226,8 @@
               loading="lazy" /><span>C-2M Consulting</span></div>
           <div class="partner partner--logo"><img src="assets/images/partners/isprof-maroua.jpg" alt="ISPROF Maroua"
               loading="lazy" /><span>ISPROF Maroua</span></div>
-          <div class="partner partner--logo"><img src="assets/images/partners/geosynergie.jpeg" alt="Geosynergie RCA-Tchad"
-              loading="lazy" /><span>Geosynergie RCA-Tchad</span></div>
+          <div class="partner partner--logo"><img src="assets/images/partners/geosynergie.jpeg"
+              alt="Geosynergie RCA-Tchad" loading="lazy" /><span>Geosynergie RCA-Tchad</span></div>
           <div class="partner"><span class="partner__mark">SI</span><span>Sahel Innovation Hub</span></div>
           <div class="partner"><span class="partner__mark">TA</span><span>TechAfrik Solutions</span></div>
           <div class="partner"><span class="partner__mark">CD</span><span>Cameroun Digital Academy</span></div>
@@ -204,8 +238,8 @@
               loading="lazy" /><span>C-2M Consulting</span></div>
           <div class="partner partner--logo"><img src="assets/images/partners/isprof-maroua.jpg" alt="ISPROF Maroua"
               loading="lazy" /><span>ISPROF Maroua</span></div>
-          <div class="partner partner--logo"><img src="assets/images/partners/geosynergie.jpeg" alt="Geosynergie RCA-Tchad"
-              loading="lazy" /><span>Geosynergie RCA-Tchad</span></div>
+          <div class="partner partner--logo"><img src="assets/images/partners/geosynergie.jpeg"
+              alt="Geosynergie RCA-Tchad" loading="lazy" /><span>Geosynergie RCA-Tchad</span></div>
           <div class="partner"><span class="partner__mark">SI</span><span>Sahel Innovation Hub</span></div>
           <div class="partner"><span class="partner__mark">TA</span><span>TechAfrik Solutions</span></div>
           <div class="partner"><span class="partner__mark">CD</span><span>Cameroun Digital Academy</span></div>
@@ -565,7 +599,7 @@
           <div class="portfolio-cta__actions">
             <a href="#devis" class="btn btn--primary" id="portfolio-cta-devis">Lancer mon projet</a>
             <a href="https://wa.me/237697484074?text=Bonjour%20ENEANTECH%2C%20j%27ai%20vu%20vos%20r%C3%A9alisations%20et%20je%20souhaite%20un%20projet%20similaire"
-              target="_blank" rel="noopener" class="btn btn--ghost" id="portfolio-cta-whatsapp">
+              target="_blank" rel="noopener noreferrer" class="btn btn--ghost" id="portfolio-cta-whatsapp">
               <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M21 11.5a8.4 8.4 0 01-12.4 7.4L3 21l2.1-5.6A8.4 8.4 0 1121 11.5z" />
               </svg>
@@ -598,55 +632,63 @@
             <h3>🎨 Graphisme &amp; Design</h3>
             <div class="course__meta"><span>6 semaines</span><span>Tous niveaux</span></div>
             <p>Créez des visuels percutants avec Photoshop, Illustrator, Canva et Figma. Projet final et certificat.</p>
-            <a href="#inscription" class="btn btn--ghost btn--sm" data-formation="Graphisme & Design">Je m'inscris</a>
+            <a href="formations.html?course=infographie-ui-ux" class="btn btn--ghost btn--sm">Je m'inscris</a>
           </article>
+
           <article class="glass course reveal" data-category="dev" data-delay="1">
             <h3>💻 Développement Web</h3>
             <div class="course__meta"><span>8 semaines</span><span>Débutant à intermédiaire</span></div>
-            <p>HTML, CSS, JavaScript, GitHub et hébergement. Création de projets réels, certificat et accompagnement.
-            </p>
-            <a href="#inscription" class="btn btn--ghost btn--sm" data-formation="Développement Web">Je m'inscris</a>
+            <p>HTML, CSS, JavaScript, GitHub et hébergement. Création de projets réels, certificat et accompagnement.</p>
+            <a href="formations.html?course=dev-web-mobile" class="btn btn--ghost btn--sm">Je m'inscris</a>
           </article>
+
           <article class="glass course reveal" data-category="dev" data-delay="2">
             <h3>📱 Développement Mobile</h3>
             <div class="course__meta"><span>10 semaines</span><span>Intermédiaire</span></div>
             <p>Applications Android/iOS avec Flutter, Dart ou React Native. Déploiement et UI design.</p>
-            <a href="#inscription" class="btn btn--ghost btn--sm" data-formation="Développement Mobile">Je m'inscris</a>
+            <a href="formations.html?course=dev-web-mobile" class="btn btn--ghost btn--sm">Je m'inscris</a>
           </article>
+
           <article class="glass course reveal" data-category="secu">
-            <h3>🧠 Intelligence Artificielle</h3>
-            <div class="course__meta"><span>8 semaines</span><span>Avancé</span></div>
-            <p>Python, Pandas, Machine Learning et projets IA pratiques. Préparez l'avenir dès aujourd'hui.</p>
-            <a href="#inscription" class="btn btn--ghost btn--sm" data-formation="Intelligence Artificielle">Je
-              m'inscris</a>
+            <h3>🤖 Maîtriser l'IA de A à Z</h3>
+            <div class="course__meta"><span>4 semaines</span><span>15 000 FCFA</span><span>Tous niveaux</span></div>
+            <p>Prompting d'élite, ChatGPT &amp; Claude, Midjourney, bots WhatsApp et automatisation no-code Make/Zapier.</p>
+            <a href="formations.html?course=ia-de-a-a-z" class="btn btn--ghost btn--sm">Je m'inscris</a>
           </article>
+
           <article class="glass course reveal" data-category="secu" data-delay="1">
             <h3>🔒 Cybersécurité</h3>
-            <div class="course__meta"><span>6 semaines</span><span>Tous niveaux</span></div>
-            <p>Protection des systèmes et réseaux, sensibilisation, tests d'intrusion, sécurité pour PME et
-              particuliers.</p>
-            <a href="#inscription" class="btn btn--ghost btn--sm" data-formation="Cybersécurité">Je m'inscris</a>
+            <div class="course__meta"><span>8 semaines</span><span>Tous niveaux</span></div>
+            <p>Protection des serveurs Linux, pare-feux pfSense, audits de failles et tests d'intrusion éthiques.</p>
+            <a href="formations.html?course=cybersecurite-systemes" class="btn btn--ghost btn--sm">Je m'inscris</a>
           </article>
-          <article class="glass course reveal" data-category="biz" data-delay="2">
+
+          <article class="glass course reveal" data-category="secu" data-delay="2">
+            <h3>🌐 Réseaux Cisco &amp; Fibre Optique</h3>
+            <div class="course__meta"><span>8 semaines</span><span>Tous niveaux</span></div>
+            <p>Routage, switching Cisco CCNA, portails captifs MikroTik et soudure de fibre optique de précision.</p>
+            <a href="formations.html?course=reseaux-cisco-fibre" class="btn btn--ghost btn--sm">Je m'inscris</a>
+          </article>
+
+          <article class="glass course reveal" data-category="biz">
             <h3>📊 Excel &amp; Bureautique</h3>
             <div class="course__meta"><span>4 semaines</span><span>Débutant</span></div>
-            <p>Formules, tableaux, automatisation et gestion de projet avec Excel, Google Sheets, Word &amp; PowerPoint.
-            </p>
-            <a href="#inscription" class="btn btn--ghost btn--sm" data-formation="Excel & Bureautique">Je m'inscris</a>
+            <p>Formules avancées, tableaux croisés dynamiques, automatisation et gestion de projet avec la suite bureautique.</p>
+            <a href="formations.html?course=bureautique-excel-pro" class="btn btn--ghost btn--sm">Je m'inscris</a>
           </article>
-          <article class="glass course reveal" data-category="biz">
+
+          <article class="glass course reveal" data-category="biz" data-delay="1">
             <h3>🌍 Entrepreneuriat Digital</h3>
             <div class="course__meta"><span>4 semaines</span><span>Tous niveaux</span></div>
             <p>Lancer une activité en ligne, stratégie de contenu, outils numériques et marketing digital local.</p>
-            <a href="#inscription" class="btn btn--ghost btn--sm" data-formation="Entrepreneuriat Digital">Je
-              m'inscris</a>
+            <a href="formations.html" class="btn btn--ghost btn--sm">Je m'inscris</a>
           </article>
-          <article class="glass course reveal" data-category="biz" data-delay="1">
+
+          <article class="glass course reveal" data-category="biz" data-delay="2">
             <h3>🧩 No-code &amp; Automatisation</h3>
             <div class="course__meta"><span>4 semaines</span><span>Débutant</span></div>
-            <p>Créer des outils sans coder (Notion, Airtable, Zapier) et automatiser vos tâches.</p>
-            <a href="#inscription" class="btn btn--ghost btn--sm" data-formation="No-code & Automatisation">Je
-              m'inscris</a>
+            <p>Créer des outils sans coder (Notion, Airtable, Zapier) et automatiser vos tâches quotidiennes.</p>
+            <a href="formations.html?course=ia-de-a-a-z" class="btn btn--ghost btn--sm">Je m'inscris</a>
           </article>
         </div>
 
@@ -694,10 +736,11 @@
                 <label for="ins-formation">Formation choisie</label>
                 <select class="select" id="ins-formation" name="formation" required>
                   <option value="">— Sélectionnez —</option>
+                  <option>Maîtriser l'IA de A à Z</option>
                   <option>Graphisme &amp; Design</option>
                   <option>Développement Web</option>
                   <option>Développement Mobile</option>
-                  <option>Intelligence Artificielle</option>
+                  <option>Réseaux Cisco &amp; Fibre</option>
                   <option>Cybersécurité</option>
                   <option>Excel &amp; Bureautique</option>
                   <option>Entrepreneuriat Digital</option>
@@ -894,8 +937,7 @@
           <!-- Membre 1 : Fondateur & Directeur Technique -->
           <div class="glass member reveal" data-anim="zoom">
             <div class="member__avatar" title="Mbaihilamde Noudjibé">
-              <img src="assets/images/team/noudjibe.jpeg" alt="Mbaihilamde Noudjibé — Fondateur & Directeur Technique"
-                onerror="this.remove()" />
+              <img src="assets/images/team/noudjibe.jpeg" alt="Mbaihilamde Noudjibé — Fondateur & Directeur Technique" />
               <span>MN</span>
             </div>
             <h3>Mbaihilamde Noudjibé</h3>
@@ -904,7 +946,7 @@
             <p class="member__bio">Ingénieur passionné par l'écosystème numérique africain, il pilote la vision
               stratégique et l'innovation technologique d'ENEANTECH.</p>
             <div class="member__links">
-              <a href="https://wa.me/237697484074" target="_blank" rel="noopener"
+              <a href="https://wa.me/237697484074" target="_blank" rel="noopener noreferrer"
                 aria-label="WhatsApp Mbaihilamde Noudjibé"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M21 11.5a8.4 8.4 0 01-12.4 7.4L3 21l2.1-5.6A8.4 8.4 0 1121 11.5z" />
                 </svg></a>
@@ -920,7 +962,7 @@
           <div class="glass member reveal" data-anim="zoom" data-delay="1">
             <div class="member__avatar" title="Ramdam Michel">
               <img src="assets/images/team/ramdam-michel.jpeg"
-                alt="Ramdam Michel — Co-fondateur & Responsable Opérations" onerror="this.remove()" />
+                alt="Ramdam Michel — Co-fondateur & Responsable Opérations" />
               <span>RM</span>
             </div>
             <h3>Ramdam Michel</h3>
@@ -929,7 +971,7 @@
             <p class="member__bio">Co-fondateur engagé, il supervise la gestion opérationnelle, la coordination des
               projets clients et le déploiement des partenariats stratégiques.</p>
             <div class="member__links">
-              <a href="https://wa.me/237697484074" target="_blank" rel="noopener"
+              <a href="https://wa.me/237697484074" target="_blank" rel="noopener noreferrer"
                 aria-label="WhatsApp Ramdam Michel"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M21 11.5a8.4 8.4 0 01-12.4 7.4L3 21l2.1-5.6A8.4 8.4 0 1121 11.5z" />
                 </svg></a>
@@ -944,8 +986,7 @@
           <!-- Membre 3 : Co-fondateur & Ingénieur Télécoms & Réseaux -->
           <div class="glass member reveal" data-anim="zoom" data-delay="2">
             <div class="member__avatar" title="Mohamadou">
-              <img src="assets/images/team/mohamadou.jpeg" alt="Mohamadou — Co-fondateur & Ingénieur Télécoms & Réseaux"
-                onerror="this.remove()" />
+              <img src="assets/images/team/mohamadou.jpeg" alt="Mohamadou — Co-fondateur & Ingénieur Télécoms & Réseaux" />
               <span>MO</span>
             </div>
             <h3>Mohamadou</h3>
@@ -954,7 +995,7 @@
             <p class="member__bio">Expert en ingénierie des télécommunications, il conçoit et déploie les
               infrastructures réseaux haut débit, la fibre optique et la connectivité sécurisée des entreprises.</p>
             <div class="member__links">
-              <a href="https://wa.me/237697484074" target="_blank" rel="noopener" aria-label="WhatsApp Mohamadou"><svg
+              <a href="https://wa.me/237697484074" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Mohamadou"><svg
                   class="ico" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M21 11.5a8.4 8.4 0 01-12.4 7.4L3 21l2.1-5.6A8.4 8.4 0 1121 11.5z" />
                 </svg></a>
@@ -969,8 +1010,7 @@
           <!-- Membre 4 : Co-fondateur & Lead Développeur -->
           <div class="glass member reveal" data-anim="zoom" data-delay="3">
             <div class="member__avatar" title="Agbo Martin">
-              <img src="assets/images/team/agbo-martin.jpg" alt="Agbo Martin — Co-fondateur & Développeur Full-Stack"
-                onerror="this.remove()" />
+              <img src="assets/images/team/agbo-martin.jpg" alt="Agbo Martin — Co-fondateur & Développeur Full-Stack" />
               <span>AM</span>
             </div>
             <h3>Agbo Martin</h3>
@@ -979,7 +1019,7 @@
             <p class="member__bio">Développeur Full-Stack chevronné, il garantit la robustesse, la sécurité et la haute
               performance de chaque solution logicielle déployée.</p>
             <div class="member__links">
-              <a href="https://wa.me/237697484074" target="_blank" rel="noopener" aria-label="WhatsApp Agbo Martin"><svg
+              <a href="https://wa.me/237697484074" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Agbo Martin"><svg
                   class="ico" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M21 11.5a8.4 8.4 0 01-12.4 7.4L3 21l2.1-5.6A8.4 8.4 0 1121 11.5z" />
                 </svg></a>
@@ -1119,7 +1159,7 @@
             <p>eneantechnoudjibe@gmail.com</p>
           </a>
           <a class="glass contact-card reveal" data-anim="flip" data-delay="1" href="https://wa.me/237697484074"
-            target="_blank" rel="noopener" id="contact-whatsapp">
+            target="_blank" rel="noopener noreferrer" id="contact-whatsapp">
             <div class="service__icon"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M21 11.5a8.4 8.4 0 01-12.4 7.4L3 21l2.1-5.6A8.4 8.4 0 1121 11.5z" />
               </svg></div>
@@ -1225,27 +1265,27 @@
           <div class="footer__social-block">
             <h3 class="footer__heading">SUIVEZ-NOUS</h3>
             <div class="footer__social-icons">
-              <a href="https://www.facebook.com/profile.php?id=61572260336634" target="_blank" rel="noopener"
+              <a href="https://www.facebook.com/profile.php?id=61572260336634" target="_blank" rel="noopener noreferrer"
                 aria-label="Facebook ENEANTECH" class="footer__soc-circle soc-facebook" id="soc-fb">
                 <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
                 </svg>
               </a>
-              <a href="https://www.linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn ENEANTECH"
+              <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn ENEANTECH"
                 class="footer__soc-circle soc-linkedin" id="soc-in">
                 <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z" />
                   <circle cx="4" cy="4" r="2" />
                 </svg>
               </a>
-              <a href="https://www.youtube.com/@eneantech" target="_blank" rel="noopener" aria-label="YouTube ENEANTECH"
+              <a href="https://www.youtube.com/@eneantech" target="_blank" rel="noopener noreferrer" aria-label="YouTube ENEANTECH"
                 class="footer__soc-circle soc-youtube" id="soc-yt">
                 <svg class="ico" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true">
                   <path
                     d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
                 </svg>
               </a>
-              <a href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="Instagram ENEANTECH"
+              <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram ENEANTECH"
                 class="footer__soc-circle soc-instagram" id="soc-ig">
                 <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
                   <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
@@ -1253,14 +1293,14 @@
                   <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
                 </svg>
               </a>
-              <a href="https://www.tiktok.com/@eneantech" target="_blank" rel="noopener" aria-label="TikTok ENEANTECH"
+              <a href="https://www.tiktok.com/@eneantech" target="_blank" rel="noopener noreferrer" aria-label="TikTok ENEANTECH"
                 class="footer__soc-circle soc-tiktok" id="soc-tk">
                 <svg class="ico" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true">
                   <path
                     d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64c.29 0 .58.04.85.12V9.4a6.33 6.33 0 00-.85-.06A6.34 6.34 0 003.1 15.68a6.34 6.34 0 0010.82 4.48c.32-.32.6-.68.83-1.07V11.2a8.28 8.28 0 004.84 1.54V9.29a4.83 4.83 0 01-.0-.04z" />
                 </svg>
               </a>
-              <a href="https://wa.me/237697484074" target="_blank" rel="noopener" aria-label="WhatsApp ENEANTECH"
+              <a href="https://wa.me/237697484074" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp ENEANTECH"
                 class="footer__soc-circle soc-whatsapp" id="soc-wa">
                 <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M21 11.5a8.4 8.4 0 01-12.4 7.4L3 21l2.1-5.6A8.4 8.4 0 1121 11.5z" />
@@ -1343,7 +1383,7 @@
 
         <div class="portfolio-modal__actions">
           <a href="#devis" class="btn btn--primary" id="modal-project-cta">Lancer un projet similaire</a>
-          <a href="https://wa.me/237697484074" target="_blank" rel="noopener" class="btn btn--ghost"
+          <a href="https://wa.me/237697484074" target="_blank" rel="noopener noreferrer" class="btn btn--ghost"
             id="modal-project-whatsapp">
             <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M21 11.5a8.4 8.4 0 01-12.4 7.4L3 21l2.1-5.6A8.4 8.4 0 1121 11.5z" />
@@ -1394,7 +1434,7 @@
           </svg>
           Consulter nos Actualités &amp; Articles
         </a>
-        <a href="https://wa.me/237697484074" target="_blank" rel="noopener"
+        <a href="https://wa.me/237697484074" target="_blank" rel="noopener noreferrer"
           class="btn btn--ghost confirm-modal__whatsapp-btn" id="confirm-modal-whatsapp">
           <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M21 11.5a8.4 8.4 0 01-12.4 7.4L3 21l2.1-5.6A8.4 8.4 0 1121 11.5z" />
@@ -1413,7 +1453,7 @@
       </svg></button>
     <a class="fab__whatsapp"
       href="https://wa.me/237697484074?text=Bonjour%20ENEANTECH%2C%20je%20souhaite%20en%20savoir%20plus%20sur%20vos%20services"
-      target="_blank" rel="noopener" aria-label="Discuter sur WhatsApp" id="fab-whatsapp">
+      target="_blank" rel="noopener noreferrer" aria-label="Discuter sur WhatsApp" id="fab-whatsapp">
       <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
         <path d="M21 11.5a8.4 8.4 0 01-12.4 7.4L3 21l2.1-5.6A8.4 8.4 0 1121 11.5z" />
       </svg>

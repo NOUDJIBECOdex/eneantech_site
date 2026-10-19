@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formations Certifiantes en Ligne &amp; Hybrides | ENEANTECH Academy</title>
+  <meta name="description"
+    content="Développez des compétences tech recherchées : Dév Web &amp; Mobile, Réseaux Cisco &amp; Fibre Optique, Infographie UI/UX, Cybersécurité et IA à Maroua et en ligne. Accès immédiat avec paiement Mobile Money (Orange / MTN MoMo)." />
+  <meta name="keywords"
+    content="formation en ligne Cameroun, cours informatique Maroua, ENEANTECH Academy, formation dev web, fibre optique, Cisco CCNA, infographie Photoshop, cybersécurité, intelligence artificielle, MTN MoMo, Orange Money" />
+  <meta name="author" content="ENEANTECH Sarl" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+  <meta name="theme-color" content="#070a13" />
+
+  <!-- Open Graph / Meta Réseaux Sociaux -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="ENEANTECH Academy" />
+  <meta property="og:title" content="Formations Certifiantes en Ligne | ENEANTECH Academy" />
+  <meta property="og:description"
+    content="Formez-vous avec les ingénieurs d'ENEANTECH. Vidéos HD, fiches pratiques, mentorat dédié et attestation officielle vérifiable par QR Code." />
+  <meta property="og:url" content="https://eneantechsite.vercel.app/formations.html" />
+  <meta property="og:image" content="https://eneantechsite.vercel.app/assets/images/og-share.jpg" />
+
+  <!-- Données structurées JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "ENEANTECH Academy",
+    "url": "https://eneantechsite.vercel.app/formations.html",
+    "logo": "https://eneantechsite.vercel.app/apple-touch-icon.png",
+    "description": "Pôle de formation professionnelle certifiante aux métiers du numérique au Cameroun.",
+    "telephone": "+237697484074",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Quartier Pitoaré",
+      "addressLocality": "Maroua",
+      "addressRegion": "Extrême-Nord",
+      "addressCountry": "CM"
+    }
+  }
+  </script>
+
+  <!-- Typographie & CSS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/bot.css" />
+</head>
+
+<body>
+
+  <!-- Barre de progression de lecture -->
+  <div class="progress" id="progress" aria-hidden="true"></div>
+
+  <!-- ===================== HEADER STREAMLINÉ ===================== -->
+  <header class="header" id="header">
+    <div class="header__bar">
+      <a href="index.html" class="brand" aria-label="ENEANTECH — Accueil">
+        <img class="brand__logo" src="assets/images/logo/logo_eneantech.jpg" alt="Logo ENEANTECH Sarl" width="42"
+          height="42" />
+        <span>ENEAN<em>TECH</em></span>
+      </a>
+
+      <nav class="nav" id="nav" aria-label="Navigation principale">
+        <!-- Menu déroulant Solutions -->
+        <div class="nav__item" id="nav-solutions">
+          <button type="button" class="nav__link nav__link--dropdown" id="solutions-btn" aria-expanded="false" aria-haspopup="true">
+            Solutions
+            <svg class="nav__chevron" viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </button>
+          <div class="nav__dropdown-menu" role="menu" aria-labelledby="solutions-btn">
+            <a href="index.html#services" class="nav__dropdown-item" role="menuitem">
+              <span class="nav__dropdown-icon">⚡</span>
+              <div class="nav__dropdown-text">
+                <span class="nav__dropdown-title">Services &amp; Ingénierie</span>
+                <span class="nav__dropdown-desc">Réseaux, fibre, logiciels &amp; cloud</span>
+              </div>
+            </a>
+            <a href="index.html#portfolio" class="nav__dropdown-item" role="menuitem">
+              <span class="nav__dropdown-icon">💼</span>
+              <div class="nav__dropdown-text">
+                <span class="nav__dropdown-title">Réalisations</span>
+                <span class="nav__dropdown-desc">Études de cas &amp; projets clients</span>
+              </div>
+            </a>
+            <a href="index.html#tarifs" class="nav__dropdown-item" role="menuitem">
+              <span class="nav__dropdown-icon">🏷️</span>
+              <div class="nav__dropdown-text">
+                <span class="nav__dropdown-title">Tarifs &amp; Forfaits</span>
+                <span class="nav__dropdown-desc">Packs clairs et transparents</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <a href="formations.html" class="nav__link is-active nav__link--formations" aria-current="page" title="Formations certifiantes ENEANTECH Academy">
+          Formations
+          <span class="nav__pill">En ligne</span>
+        </a>
+
+        <a href="blog.html" class="nav__link nav__link--blog"
+          title="Actualités &amp; Veille Technologique ENEANTECH"><span class="nav__dot"></span>Actualités</a>
+
+        <a href="index.html#apropos" class="nav__link">À propos</a>
+      </nav>
+
+      <div class="header__actions">
+        <!-- Bouton mode clair / sombre -->
+        <button class="theme-toggle" id="theme-toggle" aria-label="Changer le thème"
+          title="Basculer le mode clair / sombre">
+          <svg class="ico i-sun" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="5" />
+            <path
+              d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+          </svg>
+          <svg class="ico i-moon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+          </svg>
+        </button>
+
+        <a href="index.html#contact" class="btn btn--primary btn--sm header__cta" id="header-cta">Demander un devis</a>
+
+        <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false"
+          aria-controls="nav"><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== CONTENU PRINCIPAL ===================== -->
+  <main id="top">
+
+    <!-- 01. HERO DE L'ACADÉMIE -->
+    <section class="academy-hero">
+      <div class="container academy-hero__content">
+        <div class="badge">
+          <span class="badge__dot"></span>
+          ENEANTECH ACADEMY · FORMATIONS CERTIFIANTES
+        </div>
+        <h1 class="academy-hero__title">
+          Montez en compétences avec nos formations <span class="text-gradient">concrètes &amp; certifiantes</span>
+        </h1>
+        <p class="academy-hero__desc">
+          Apprenez auprès d'ingénieurs et techniciens de terrain à Maroua. Vidéos YouTube HD à votre rythme, fiches d'exercices, mentorat personnalisé et déblocage immédiat par <strong>Mobile Money (Orange Money &amp; MTN MoMo)</strong> ou carte bancaire.
+        </p>
+
+        <!-- Ligne de réassurance & chiffres clés -->
+        <div class="academy-trust-row">
+          <div class="academy-trust-item">
+            <span class="academy-trust-icon">✓</span>
+            <span>Accès immédiat après paiement</span>
+          </div>
+          <div class="academy-trust-item">
+            <span class="academy-trust-icon">📱</span>
+            <span>Mobile Money sans tracasseries</span>
+          </div>
+          <div class="academy-trust-item">
+            <span class="academy-trust-icon">🎓</span>
+            <span>Certificat avec QR Code unique</span>
+          </div>
+          <div class="academy-trust-item">
+            <span class="academy-trust-icon">⚡</span>
+            <span>Mentorat &amp; Tuteur EneanBot 24/7</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02. COMMENT ÇA FONCTIONNE (3 ÉTAPES SIMPLES) -->
+    <section class="section" style="padding-top: 0;">
+      <div class="container">
+        <div class="academy-steps">
+          <div class="glass academy-step-card reveal" data-anim="zoom">
+            <div class="academy-step-num">1</div>
+            <h3>Choisissez votre formation</h3>
+            <p>Consultez le programme détaillé, découvrez les compétences que vous allez acquérir et regardez la vidéo de démo.</p>
+          </div>
+          <div class="glass academy-step-card reveal" data-anim="zoom" data-delay="1">
+            <div class="academy-step-num">2</div>
+            <h3>Paiement instantané Mobile Money</h3>
+            <p>Réglez en toute sécurité avec <strong>Orange Money</strong>, <strong>MTN Mobile Money</strong> ou carte sans compte bancaire ni paperasse.</p>
+          </div>
+          <div class="glass academy-step-card reveal" data-anim="zoom" data-delay="2">
+            <div class="academy-step-num">3</div>
+            <h3>Apprenez &amp; Obtenez votre Diplôme</h3>
+            <p>Accédez directement aux vidéos YouTube HQ, posez vos questions aux mentors et recevez votre certificat officiel vérifiable.</p>
+          </div>
+        </div>
+
+        <!-- 03. FILTRES PAR DOMAINE -->
+        <div class="academy-filters" role="tablist" aria-label="Filtrer les formations">
+          <button type="button" class="academy-filter-btn is-active" data-filter="all">Toutes les formations (6)</button>
+          <button type="button" class="academy-filter-btn" data-filter="ia">🤖 Intelligence Artificielle</button>
+          <button type="button" class="academy-filter-btn" data-filter="dev">💻 Dév Web &amp; Mobile</button>
+          <button type="button" class="academy-filter-btn" data-filter="reseaux">🌐 Réseaux &amp; Fibre</button>
+          <button type="button" class="academy-filter-btn" data-filter="design">🎨 Infographie &amp; UI/UX</button>
+          <button type="button" class="academy-filter-btn" data-filter="cyber">🛡️ Cybersécurité</button>
+          <button type="button" class="academy-filter-btn" data-filter="biz">📊 Bureautique Pro</button>
+        </div>
+
+        <!-- 04. CATALOGUE DES FORMATIONS -->
+        <div class="academy-grid" id="academy-courses">
+
+          <!-- Formation 1 : Dév Web & Mobile -->
+          <article class="glass course-card reveal" data-category="dev" id="course-dev">
+            <div class="course-card__thumb">
+              <img src="assets/images/portfolio/realisation-web.jpg"
+                alt="Formation Développement Web et Mobile ENEANTECH" loading="lazy" />
+              <span class="course-card__badge-cat">Dév Web &amp; Mobile</span>
+              <span class="course-card__duration">⏱️ 10 semaines · 48 leçons</span>
+            </div>
+            <div class="course-card__body">
+              <div class="course-card__mentor">
+                <img class="course-card__mentor-avatar" src="assets/images/team/agbo-martin.jpg" alt="Agbo Martin" />
+                <div class="course-card__mentor-info">
+                  <span class="course-card__mentor-name">Agbo Martin &amp; Mbaihilamde N.</span>
+                  <span class="course-card__mentor-role">Lead Dév &amp; Architecte Cloud</span>
+                </div>
+              </div>
+              <h3 class="course-card__title">Full-Stack Web &amp; Mobile Moderne</h3>
+              <p class="course-card__desc">
+                Créez des sites et applications de A à Z : HTML5, CSS3, JavaScript moderne, React, Node.js, bases PostgreSQL et introduction Flutter.
+              </p>
+              <div class="course-card__highlights">
+                <div class="course-card__highlight-item">
+                  <span>✓</span> 3 projets complets déployés en production
+                </div>
+                <div class="course-card__highlight-item">
+                  <span>✓</span> Vidéos pas-à-pas + codes sources GitHub inclus
+                </div>
+                <div class="course-card__highlight-item">
+                  <span>✓</span> Certificat vérifiable ENEANTECH Academy
+                </div>
+              </div>
+
+              <div class="course-card__footer">
+                <div class="course-card__pricing-box">
+                  <div class="course-card__promo-line">
+                    <span class="course-card__promo-tag">⚡ Offre de lancement</span>
+                    <span class="course-card__discount-pill">-42% de réduction</span>
+                  </div>
+                  <div class="course-card__price-amount">
+                    <span class="course-card__price-now">35 000 <em>FCFA</em></span>
+                    <span class="course-card__price-old">60 000 FCFA</span>
+                  </div>
+                </div>
+
+                <div class="course-card__actions">
+                  <a href="https://chariow.com" target="_blank" rel="noopener noreferrer" class="btn--enroll" id="buy-dev-web">
+                    <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" aria-hidden="true">
+                      <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                    </svg>
+                    Rejoindre la formation
+                  </a>
+                  <div class="payment-methods-tag">
+                    <span class="momo-dot momo-dot--mtn"></span> MTN MoMo
+                    <span style="opacity:0.4;">·</span>
+                    <span class="momo-dot momo-dot--orange"></span> Orange Money
+                    <span style="opacity:0.4;">·</span>
+                    <span>💳 Carte</span>
+                  </div>
+                  <button type="button" class="btn--syllabus" data-course-id="dev-web-mobile">
+                    Programme détaillé &amp; Démo →
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Formation 2 : Réseaux Cisco & Fibre Optique -->
+          <article class="glass course-card reveal" data-category="reseaux" data-delay="1" id="course-reseaux">
+            <div class="course-card__thumb">
+              <img src="assets/images/portfolio/realisation-reseau.jpg"
+                alt="Formation Réseaux Cisco et Fibre Optique ENEANTECH" loading="lazy" />
+              <span class="course-card__badge-cat">Réseaux &amp; Télécoms</span>
+              <span class="course-card__duration">⏱️ 8 semaines · 36 leçons</span>
+            </div>
+            <div class="course-card__body">
+              <div class="course-card__mentor">
+                <img class="course-card__mentor-avatar" src="assets/images/team/mohamadou.jpeg" alt="Mohamadou" />
+                <div class="course-card__mentor-info">
+                  <span class="course-card__mentor-name">Mohamadou</span>
+                  <span class="course-card__mentor-role">Ingénieur Télécoms &amp; Fibre</span>
+                </div>
+              </div>
+              <h3 class="course-card__title">Réseaux Cisco, MikroTik &amp; Soudure Fibre</h3>
+              <p class="course-card__desc">
+                Câblage structuré RJ45, configuration des Switchs/Routeurs Cisco, hotspots MikroTik avec portail captif et techniques de soudure fibre optique.
+              </p>
+              <div class="course-card__highlights">
+                <div class="course-card__highlight-item">
+                  <span>✓</span> Préparation pratique aux certifications Cisco
+                </div>
+                <div class="course-card__highlight-item">
+                  <span>✓</span> Schémas Packet Tracer &amp; vidéos d'atelier réelles
+                </div>
+                <div class="course-card__highlight-item">
+                  <span>✓</span> Attestation certifiante d'Ingénieur Réseau
+                </div>
+              </div>
+
+              <div class="course-card__footer">
+                <div class="course-card__pricing-box">
+                  <div class="course-card__promo-line">
+                    <span class="course-card__promo-tag">⚡ Offre de lancement</span>
+                    <span class="course-card__discount-pill">-40% de réduction</span>
+                  </div>
+                  <div class="course-card__price-amount">
+                    <span class="course-card__price-now">45 000 <em>FCFA</em></span>
+                    <span class="course-card__price-old">75 000 FCFA</span>
+                  </div>
+                </div>
+
+                <div class="course-card__actions">
+                  <a href="https://chariow.com" target="_blank" rel="noopener noreferrer" class="btn--enroll" id="buy-reseaux">
+                    <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" aria-hidden="true">
+                      <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                    </svg>
+                    Rejoindre la formation
+                  </a>
+                  <div class="payment-methods-tag">
+                    <span class="momo-dot momo-dot--mtn"></span> MTN MoMo
+                    <span style="opacity:0.4;">·</span>
+                    <span class="momo-dot momo-dot--orange"></span> Orange Money
+                    <span style="opacity:0.4;">·</span>
+                    <span>💳 Carte</span>
+                  </div>
+                  <button type="button" class="btn--syllabus" data-course-id="reseaux-cisco-fibre">
+                    Programme détaillé &amp; Démo →
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Formation 3 : Infographie & UI/UX Design -->
+          <article class="glass course-card reveal" data-category="design" data-delay="2" id="course-design">
+            <div class="course-card__thumb">
+              <img src="assets/images/portfolio/realisation-branding.jpg"
+                alt="Formation Infographie et Graphisme ENEANTECH" loading="lazy" />
+              <span class="course-card__badge-cat">Graphisme &amp; UI/UX</span>
+              <span class="course-card__duration">⏱️ 6 semaines · 30 leçons</span>
+            </div>
+            <div class="course-card__body">
+              <div class="course-card__mentor">
+                <img class="course-card__mentor-avatar" src="assets/images/team/noudjibe.jpeg" alt="Noudjibé M." />
+                <div class="course-card__mentor-info">
+                  <span class="course-card__mentor-name">Pôle Direction Artistique</span>
+                  <span class="course-card__mentor-role">Designers Seniors ENEANTECH</span>
+                </div>
+              </div>
+              <h3 class="course-card__title">Infographie, Identité Visuelle &amp; UI/UX</h3>
+              <p class="course-card__desc">
+                Maîtrisez Photoshop, Illustrator et Figma. Concevez des logos vectoriels percutants, des affiches publicitaires haut de gamme et des maquettes d'applis.
+              </p>
+              <div class="course-card__highlights">
+                <div class="course-card__highlight-item">
+                  <span>✓</span> Pack de ressources graphiques &amp; polices pro offert
+                </div>
+                <div class="course-card__highlight-item">
+                  <span>✓</span> Création de votre propre portfolio client
+                </div>
+                <div class="course-card__highlight-item">
+                  <span>✓</span> Certificat officiel Graphiste &amp; Designer
+                </div>
+              </div>
+
+              <div class="course-card__footer">
+                <div class="course-card__pricing-box">
+                  <div class="course-card__promo-line">
+                    <span class="course-card__promo-tag">⚡ Offre de lancement</span>
+                    <span class="course-card__discount-pill">-40% de réduction</span>
+                  </div>
+                  <div class="course-card__price-amount">
+                    <span class="course-card__price-now">30 000 <em>FCFA</em></span>
+                    <span class="course-card__price-old">50 000 FCFA</span>
+                  </div>
+                </div>
+
+                <div class="course-card__actions">
+                  <a href="https://chariow.com" target="_blank" rel="noopener noreferrer" class="btn--enroll" id="buy-design">
+                    <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" aria-hidden="true">
+                      <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                    </svg>
+                    Rejoindre la formation
+                  </a>
+                  <div class="payment-methods-tag">
+                    <span class="momo-dot momo-dot--mtn"></span> MTN MoMo
+                    <span style="opacity:0.4;">·</span>
+                    <span class="momo-dot momo-dot--orange"></span> Orange Money
+                    <span style="opacity:0.4;">·</span>
+                    <span>💳 Carte</span>
+                  </div>
+                  <button type="button" class="btn--syllabus" data-course-id="infographie-ui-ux">
+                    Programme détaillé &amp; Démo →
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Formation 4 : Cybersécurité & Systèmes -->
+          <article class="glass course-card reveal" data-category="cyber" id="course-cyber">
+            <div class="course-card__thumb">
+              <img src="assets/images/portfolio/realisation-cyber.jpg"
+                alt="Formation Cybersécurité et Linux ENEANTECH" loading="lazy" />
+              <span class="course-card__badge-cat">Cybersécurité</span>
+              <span class="course-card__duration">⏱️ 8 semaines · 38 leçons</span>
+            </div>
+            <div class="course-card__body">
+              <div class="course-card__mentor">
+                <img class="course-card__mentor-avatar" src="assets/images/team/noudjibe.jpeg" alt="Noudjibé M." />
+                <div class="course-card__mentor-info">
+                  <span class="course-card__mentor-name">Mbaihilamde Noudjibé</span>
+                  <span class="course-card__mentor-role">Directeur Technique &amp; Auditeur</span>
+                </div>
+              </div>
+              <h3 class="course-card__title">Cybersécurité, Pentest &amp; Linux Pro</h3>
+              <p class="course-card__desc">
+                Administration système Linux avancée, durcissement des serveurs, pare-feu pfSense, analyse de vulnérabilités (Nmap/Nessus) et éthique de sécurité.
+              </p>
+              <div class="course-card__highlights">
+                <div class="course-card__highlight-item">
+                  <span>✓</span> Laboratoires pratiques en environnements virtuels
+                </div>
+                <div class="course-card__highlight-item">
+                  <span>✓</span> Sécurisation concrète de serveurs et réseaux
+                </div>
+                <div class="course-card__highlight-item">
+                  <span>✓</span> Certificat d'Administrateur Sécurité ENEANTECH
+                </div>
+              </div>
+
+              <div class="course-card__footer">
+                <div class="course-card__pricing-box">
+                  <div class="course-card__promo-line">
+                    <span class="course-card__promo-tag">⚡ Offre de lancement</span>
+                    <span class="course-card__discount-pill">-43% de réduction</span>
+                  </div>
+                  <div class="course-card__price-amount">
+                    <span class="course-card__price-now">40 000 <em>FCFA</em></span>
+                    <span class="course-card__price-old">70 000 FCFA</span>
+                  </div>
+                </div>
+
+                <div class="course-card__actions">
+                  <a href="https://chariow.com" target="_blank" rel="noopener noreferrer" class="btn--enroll" id="buy-cyber">
+                    <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" aria-hidden="true">
+                      <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                    </svg>
+                    Rejoindre la formation
+                  </a>
+                  <div class="payment-methods-tag">
+                    <span class="momo-dot momo-dot--mtn"></span> MTN MoMo
+                    <span style="opacity:0.4;">·</span>
+                    <span class="momo-dot momo-dot--orange"></span> Orange Money
+                    <span style="opacity:0.4;">·</span>
+                    <span>💳 Carte</span>
+                  </div>
+                  <button type="button" class="btn--syllabus" data-course-id="cybersecurite-systemes">
+                    Programme détaillé &amp; Démo →
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Formation 5 : Bureautique Excel Pro -->
+          <article class="glass course-card reveal" data-category="biz" data-delay="1" id="course-excel">
+            <div class="course-card__thumb">
+              <img src="assets/images/services/service-bureautique.jpg"
+                alt="Formation Excel et Bureautique ENEANTECH" loading="lazy" />
+              <span class="course-card__badge-cat">Bureautique &amp; Business</span>
+              <span class="course-card__duration">⏱️ 4 semaines · 22 leçons</span>
+            </div>
+            <div class="course-card__body">
+              <div class="course-card__mentor">
+                <img class="course-card__mentor-avatar" src="assets/images/team/ramdam-michel.jpeg" alt="Ramdam Michel" />
+                <div class="course-card__mentor-info">
+                  <span class="course-card__mentor-name">Ramdam Michel</span>
+                  <span class="course-card__mentor-role">Responsable des Opérations</span>
+                </div>
+              </div>
+              <h3 class="course-card__title">Sas Bureautique Pro, Excel Avancé &amp; Gestion</h3>
+              <p class="course-card__desc">
+                Maîtrisez les Tableaux Croisés Dynamiques (TCD), formules complexes (RechercheX, SI), automatisation de bilans financiers et outils collaboratifs Google.
+              </p>
+              <div class="course-card__highlights">
+                <div class="course-card__highlight-item">
+                  <span>✓</span> Modèles Excel prêts à l'emploi à télécharger
+                </div>
+                <div class="course-card__highlight-item">
+                  <span>✓</span> Cas pratiques réels d'entreprises locales
+                </div>
+                <div class="course-card__highlight-item">
+                  <span>✓</span> Certificat Bureautique Professionnelle
+                </div>
+              </div>
+
+              <div class="course-card__footer">
+                <div class="course-card__pricing-box">
+                  <div class="course-card__promo-line">
+                    <span class="course-card__promo-tag">⚡ Offre de lancement</span>
+                    <span class="course-card__discount-pill">-37% de réduction</span>
+                  </div>
+                  <div class="course-card__price-amount">
+                    <span class="course-card__price-now">25 000 <em>FCFA</em></span>
+                    <span class="course-card__price-old">40 000 FCFA</span>
+                  </div>
+                </div>
+
+                <div class="course-card__actions">
+                  <a href="https://chariow.com" target="_blank" rel="noopener noreferrer" class="btn--enroll" id="buy-excel">
+                    <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" aria-hidden="true">
+                      <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                    </svg>
+                    Rejoindre la formation
+                  </a>
+                  <div class="payment-methods-tag">
+                    <span class="momo-dot momo-dot--mtn"></span> MTN MoMo
+                    <span style="opacity:0.4;">·</span>
+                    <span class="momo-dot momo-dot--orange"></span> Orange Money
+                    <span style="opacity:0.4;">·</span>
+                    <span>💳 Carte</span>
+                  </div>
+                  <button type="button" class="btn--syllabus" data-course-id="bureautique-excel-pro">
+                    Programme détaillé &amp; Démo →
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+ 
+          <!-- Formation 6 : Maîtriser l'IA de A à Z -->
+          <article class="glass course-card reveal" data-category="ia" data-delay="2" id="course-ia">
+            <div class="course-card__thumb">
+              <img src="assets/images/portfolio/realisation-ia.jpg"
+                alt="Formation Maîtriser l'Intelligence Artificielle ENEANTECH" loading="lazy" />
+              <span class="course-card__badge-cat">Intelligence Artificielle</span>
+              <span class="course-card__duration">⏱️ 4 semaines · 24 leçons</span>
+            </div>
+            <div class="course-card__body">
+              <div class="course-card__mentor">
+                <img class="course-card__mentor-avatar" src="assets/images/team/noudjibe.jpeg" alt="Mbaihilamde Noudjibé" />
+                <div class="course-card__mentor-info">
+                  <span class="course-card__mentor-name">Mbaihilamde Noudjibé</span>
+                  <span class="course-card__mentor-role">Directeur Technique &amp; Architecte IA</span>
+                </div>
+              </div>
+              <h3 class="course-card__title">Maîtriser l'IA de A à Z (Générative &amp; Agents)</h3>
+              <p class="course-card__desc">
+                Passez à la vitesse supérieure avec les outils d'IA : Prompt Engineering d'élite (ChatGPT, Claude), visuels Midjourney, automatisation Make/Zapier et création de bots WhatsApp.
+              </p>
+              <div class="course-card__highlights">
+                <div class="course-card__highlight-item">
+                  <span>✓</span> Prompting avancé pour le business &amp; Custom GPTs
+                </div>
+                <div class="course-card__highlight-item">
+                  <span>✓</span> Automatisation de workflows sans coder (Make / Zapier)
+                </div>
+                <div class="course-card__highlight-item">
+                  <span>✓</span> Création d'un agent de service client WhatsApp
+                </div>
+              </div>
+
+              <div class="course-card__footer">
+                <div class="course-card__pricing-box">
+                  <div class="course-card__promo-line">
+                    <span class="course-card__promo-tag">⚡ Offre de lancement</span>
+                    <span class="course-card__discount-pill">-50% de réduction</span>
+                  </div>
+                  <div class="course-card__price-amount">
+                    <span class="course-card__price-now">15 000 <em>FCFA</em></span>
+                    <span class="course-card__price-old">30 000 FCFA</span>
+                  </div>
+                </div>
+
+                <div class="course-card__actions">
+                  <a href="https://chariow.com" target="_blank" rel="noopener noreferrer" class="btn--enroll" id="buy-ia">
+                    <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" aria-hidden="true">
+                      <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                    </svg>
+                    Rejoindre la formation
+                  </a>
+                  <div class="payment-methods-tag">
+                    <span class="momo-dot momo-dot--mtn"></span> MTN MoMo
+                    <span style="opacity:0.4;">·</span>
+                    <span class="momo-dot momo-dot--orange"></span> Orange Money
+                    <span style="opacity:0.4;">·</span>
+                    <span>💳 Carte</span>
+                  </div>
+                  <button type="button" class="btn--syllabus" data-course-id="ia-de-a-a-z">
+                    Programme détaillé &amp; Démo →
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 05. SECTION CERTIFICAT & VALEUR PROFESSIONNELLE -->
+    <section class="section section--alt">
+      <div class="container">
+        <div class="signup" style="grid-template-columns: 1fr 1fr; align-items: center;">
+          <div class="glass" style="padding: clamp(1.75rem, 4vw, 2.75rem);">
+            <div class="badge" style="margin-bottom: 1rem;">
+              <span class="badge__dot"></span>
+              RECONNAISSANCE PROFESSIONNELLE
+            </div>
+            <h2>Un certificat officiel <span class="text-gradient">vérifiable par QR Code</span></h2>
+            <p style="color: var(--text-muted); line-height: 1.6; margin: 1rem 0 1.5rem;">
+              Chaque attestation délivrée par ENEANTECH Sarl comporte un numéro d'enregistrement unique et un QR Code scannable. Les recruteurs et employeurs à Maroua, Yaoundé, Douala ou à l'international peuvent authentifier instantanément vos compétences sur notre plateforme.
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.92rem; color: var(--text);">
+              <div>🛡️ <strong>Sécurité anti-fraude</strong> : Signature numérique d'ingénieur.</div>
+              <div>💼 <strong>Boost CV &amp; LinkedIn</strong> : Valorisable immédiatement auprès des DRH.</div>
+              <div>⚡ <strong>Délivrance automatique</strong> dès 100% de progression validée.</div>
+            </div>
+          </div>
+
+          <div class="glass" style="padding: 2rem; text-align: center; border: 2px dashed rgba(56, 189, 248, 0.4);">
+            <div style="font-size: 3rem; margin-bottom: 0.5rem;">📜</div>
+            <h3 style="color: var(--text-strong); margin-bottom: 0.4rem;">Attestation ENEANTECH Academy</h3>
+            <p style="font-size: 0.85rem; color: var(--cyan-400); margin-bottom: 1.5rem;">Spécimen officiel avec QR Code d'authentification</p>
+            <div style="background: rgba(0, 0, 0, 0.4); padding: 1.25rem; border-radius: var(--radius-sm); border: 1px solid var(--border); max-width: 340px; margin: 0 auto; display: flex; align-items: center; gap: 1rem; text-align: left;">
+              <div style="width: 60px; height: 60px; background: #fff; border-radius: 8px; display: grid; place-items: center; color: #000; font-weight: 800; font-size: 0.7rem; flex-shrink: 0;">
+                [QR CODE]
+              </div>
+              <div>
+                <div style="font-size: 0.78rem; font-weight: 700; color: #fff;">ID : EN-ACAD-2026-0482</div>
+                <div style="font-size: 0.72rem; color: var(--text-muted);">Vérifié le : 18 Octobre 2026</div>
+                <div style="font-size: 0.72rem; color: #34d399; font-weight: 600;">● Statut : Authentique &amp; Certifié</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06. FOIRE AUX QUESTIONS (FAQ E-LEARNING) -->
+    <section class="section">
+      <div class="container">
+        <div class="section__head">
+          <span class="badge">Questions fréquentes</span>
+          <h2>Tout ce que vous devez <span class="text-gradient">savoir</span></h2>
+          <p>Des réponses transparentes pour démarrer votre formation en toute sérénité.</p>
+        </div>
+
+        <div class="faq-grid">
+          <details class="faq-item" open>
+            <summary class="faq-question">
+              <span>Comment fonctionne le paiement par Mobile Money (Orange / MTN) ?</span>
+              <span>▾</span>
+            </summary>
+            <div class="faq-answer">
+              Le paiement est 100% automatisé, instantané et sécurisé. Vous cliquez sur <strong>"Rejoindre la formation"</strong>, vous renseignez votre numéro Orange Money ou MTN Mobile Money, vous validez votre code secret sur votre téléphone portable, et votre accès est immédiatement débloqué sans tracasseries !
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>Comment accède-t-on aux cours après le paiement ?</span>
+              <span>▾</span>
+            </summary>
+            <div class="faq-answer">
+              Dès la confirmation de votre règlement, vous recevez votre lien d'accès immédiat ainsi que l'accès à l'espace étudiant. Vos cours sont hébergés en vidéo haute définition sur YouTube (mode privé/sécurisé), ce qui garantit une lecture ultra-fluide même avec une connexion 3G/4G modeste.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>Que faire si je suis bloqué sur un exercice ou un devoir ?</span>
+              <span>▾</span>
+            </summary>
+            <div class="faq-answer">
+              Vous n'êtes jamais seul ! D'une part, notre assistant intelligent <strong>EneanBot AI</strong> est intégré au site 24h/24 pour répondre à toutes vos questions de programmation ou de configuration. D'autre part, vous bénéficiez d'un canal direct d'entraide avec nos formateurs ingénieurs sur WhatsApp.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>Combien de temps ai-je accès aux contenus de formation ?</span>
+              <span>▾</span>
+            </summary>
+            <div class="faq-answer">
+              Votre accès est <strong>à vie</strong> ! Vous pouvez suivre les cours à votre propre rythme, les soirs, les week-ends, et revenir réécouter les leçons quand vous le souhaitez, y compris les futures mises à jour des cours.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>Puis-je payer par virement direct ou en liquide à Maroua ?</span>
+              <span>▾</span>
+            </summary>
+            <div class="faq-answer">
+              Absolument. Si vous préférez un paiement en direct ou en atelier, notre siège est situé au <strong>Quartier Pitoaré à Maroua</strong>. Vous pouvez aussi nous contacter directement sur WhatsApp au <strong>+237 697 48 40 74</strong> pour finaliser votre inscription.
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07. BANDEAU CONTACT & ASSISTANCE WHATSAPP -->
+    <section class="section" style="padding-top: 0;">
+      <div class="container">
+        <div class="glass portfolio-cta reveal" data-anim="zoom">
+          <div class="portfolio-cta__content">
+            <h3>Une question avant de vous inscrire ?</h3>
+            <p>Notre équipe pédagogique est disponible sur WhatsApp pour vous orienter vers la formation la plus adaptée à vos ambitions professionnelles.</p>
+          </div>
+          <div class="portfolio-cta__actions">
+            <a href="https://wa.me/237697484074?text=Bonjour%20ENEANTECH%2C%20je%20souhaite%20des%20informations%20sur%20vos%20formations%20en%20ligne"
+              target="_blank" rel="noopener noreferrer" class="btn btn--primary" id="academy-whatsapp">
+              <svg class="ico" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M21 11.5a8.4 8.4 0 01-12.4 7.4L3 21l2.1-5.6A8.4 8.4 0 1121 11.5z" />
+              </svg>
+              Échanger avec un conseiller WhatsApp
+            </a>
+            <a href="index.html#contact" class="btn btn--ghost">Nous écrire par email</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+
+  <!-- ===================== FOOTER OFFICIEL ===================== -->
+  <footer class="footer" id="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <!-- 01. MARQUE & LOCALISATION -->
+        <div class="footer__col footer__col--brand">
+          <a href="index.html" class="brand footer__brand" aria-label="ENEANTECH — Accueil">
+            <img class="brand__logo" src="assets/images/logo/logo_eneantech.jpg" alt="Logo ENEANTECH Sarl" width="48"
+              height="48" loading="lazy" />
+            <div class="footer__brand-text">
+              <span class="footer__brand-title">ENEAN<em>TECH</em></span>
+              <span class="footer__brand-sub">Sarl · Maroua, Cameroun</span>
+            </div>
+          </a>
+          <p class="footer__desc">
+            Entreprise d'ingénierie informatique, solutions réseaux, développement web/logiciel et formations certifiantes.
+          </p>
+          <div class="footer__badges-row">
+            <span class="badge badge--sm"><span class="badge__dot"></span> Maroua-Pitoaré</span>
+            <span class="badge badge--sm">Agrément Tech</span>
+          </div>
+        </div>
+
+        <!-- 02. NAVIGATION RAPIDE -->
+        <div class="footer__col footer__col--links">
+          <h3 class="footer__heading">ACADÉMIE</h3>
+          <ul class="footer__nav-list">
+            <li><a href="#academy-courses" class="footer__link">Toutes les Formations</a></li>
+            <li><a href="index.html#services" class="footer__link">Services &amp; Réseaux</a></li>
+            <li><a href="index.html#tarifs" class="footer__link">Tarifs Entreprises</a></li>
+            <li><a href="blog.html" class="footer__link">Actualités Tech</a></li>
+          </ul>
+        </div>
+
+        <!-- 03. CONTACT DIRECT -->
+        <div class="footer__col footer__col--legal">
+          <h3 class="footer__heading">CONTACT</h3>
+          <ul class="footer__contact-list">
+            <li>
+              <a href="tel:+237697484074" class="footer__link">
+                📞 +237 697 48 40 74
+              </a>
+            </li>
+            <li>
+              <a href="mailto:eneantechnoudjibe@gmail.com" class="footer__link">
+                ✉️ eneantechnoudjibe@gmail.com
+              </a>
+            </li>
+            <li>
+              <span class="footer__link" style="opacity: 0.8;">
+                📍 Maroua, Quartier Pitoaré
+              </span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 04. RÉSEAUX SOCIAUX -->
+        <div class="footer__col footer__col--newsletter">
+          <div>
+            <h3 class="footer__heading">SUIVEZ-NOUS</h3>
+            <div class="footer__social-icons">
+              <a href="https://wa.me/237697484074" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp ENEANTECH"
+                class="footer__soc-circle soc-whatsapp">
+                <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M21 11.5a8.4 8.4 0 01-12.4 7.4L3 21l2.1-5.6A8.4 8.4 0 1121 11.5z" />
+                </svg>
+              </a>
+              <a href="https://www.facebook.com/profile.php?id=61572260336634" target="_blank" rel="noopener noreferrer"
+                aria-label="Facebook ENEANTECH" class="footer__soc-circle soc-facebook">
+                <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
+                </svg>
+              </a>
+              <a href="https://www.youtube.com/@eneantech" target="_blank" rel="noopener noreferrer" aria-label="YouTube ENEANTECH"
+                class="footer__soc-circle soc-youtube">
+                <svg class="ico" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true">
+                  <path
+                    d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <span>© <span id="year">2026</span> ENEANTECH Sarl. Tous droits réservés.</span>
+        <span class="footer__bottom-sub">Former pour impacter, développer pour transformer.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODALE SYLLABUS & DÉTAILS DU COURS -->
+  <div class="syllabus-modal" id="syllabus-modal" role="dialog" aria-modal="true" aria-labelledby="syllabus-modal-title">
+    <div class="syllabus-modal__backdrop" id="syllabus-modal-backdrop"></div>
+    <div class="syllabus-modal__dialog">
+      <button type="button" class="syllabus-modal__close" id="syllabus-modal-close" aria-label="Fermer la fenêtre">
+        ✕
+      </button>
+
+      <div class="syllabus-modal__head">
+        <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap; margin-bottom:0.4rem;">
+          <span class="badge" id="syllabus-modal-badge" style="background:rgba(0,102,255,0.15); color:var(--cyan-400); border-color:rgba(77,148,255,0.4);">
+            Formation
+          </span>
+          <span id="syllabus-modal-duration" style="font-size:0.82rem; color:var(--text-muted); font-weight:600;"></span>
+        </div>
+        <h2 id="syllabus-modal-title" style="font-size:clamp(1.25rem, 2.5vw, 1.75rem); color:var(--text-strong); margin:0.3rem 0;"></h2>
+        <p id="syllabus-modal-mentor" style="font-size:0.9rem; color:var(--blue-300); font-weight:600; margin-bottom:0.75rem;"></p>
+        <p id="syllabus-modal-desc" style="font-size:0.92rem; color:var(--text-muted); line-height:1.6;"></p>
+      </div>
+
+      <!-- Tarifs & Bouton Inscription dans la modale -->
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; padding:1.1rem 1.4rem; border-radius:var(--radius-sm); background:rgba(255,255,255,0.03); border:1px solid var(--border);">
+        <div>
+          <span style="font-size:0.78rem; color:var(--text-muted); display:block;">Paiement Mobile Money instantané (MoMo / Orange)</span>
+          <div style="display:flex; align-items:baseline; gap:0.6rem;">
+            <span id="syllabus-modal-price" style="font-size:1.65rem; font-weight:800; color:#fff;"></span>
+            <span id="syllabus-modal-old-price" style="font-size:0.92rem; text-decoration:line-through; color:var(--text-muted); opacity:0.7;"></span>
+          </div>
+        </div>
+        <a href="https://chariow.com" target="_blank" rel="noopener noreferrer" class="btn--enroll" id="syllabus-chariow-btn" style="width:auto; padding:0.85rem 1.75rem;">
+          Rejoindre la formation (Accès immédiat) →
+        </a>
+      </div>
+
+      <!-- Programme complet découpé en modules -->
+      <div>
+        <h3 style="font-size:1.1rem; color:var(--text-strong); margin-bottom:0.85rem;">📚 Programme pédagogique complet :</h3>
+        <div class="syllabus-modules" id="syllabus-modal-modules"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODALE PRÉ-INSCRIPTION & FORMATION EN COURS D'ENREGISTREMENT -->
+  <div class="syllabus-modal" id="coming-soon-modal" role="dialog" aria-modal="true" aria-labelledby="coming-soon-title">
+    <div class="syllabus-modal__backdrop" id="coming-soon-backdrop"></div>
+    <div class="syllabus-modal__dialog" style="max-width: 580px; text-align: center;">
+      <button type="button" class="syllabus-modal__close" id="coming-soon-close" aria-label="Fermer la fenêtre">
+        ✕
+      </button>
+
+      <div style="font-size: 2.8rem; margin-bottom: 0.4rem;">🎬</div>
+      <span class="badge" style="background: rgba(0, 102, 255, 0.15); color: var(--cyan-400); border-color: rgba(77, 148, 255, 0.4); margin: 0 auto; font-size: 0.78rem;">
+        ⚡ TOURNAGE STUDIO · SORTIE IMMINENTE
+      </span>
+
+      <h2 id="coming-soon-title" style="font-size: 1.4rem; color: var(--text-strong); margin: 0.8rem 0 0.35rem;">
+        Formation en cours d'enregistrement
+      </h2>
+      <p id="coming-soon-coursename" style="font-size: 1.05rem; font-weight: 700; color: var(--blue-300); margin-bottom: 0.75rem;"></p>
+
+      <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1.25rem;">
+        Nos ingénieurs et formateurs finalisent actuellement les vidéos haute définition, les ateliers pratiques et les codes sources de cette formation. Elle sera mise en ligne très prochainement sur notre plateforme vidéo &amp; Chariow.
+      </p>
+
+      <div style="padding: 1.1rem; border-radius: var(--radius-sm); background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.3); margin-bottom: 1.5rem; text-align: left;">
+        <div style="display: flex; gap: 0.65rem; align-items: flex-start;">
+          <span style="font-size: 1.3rem;">🎁</span>
+          <div style="font-size: 0.88rem; color: var(--text-strong);">
+            <strong>Garantie Tarif Early-Bird :</strong>
+            <p style="color: var(--text-muted); font-size: 0.84rem; margin-top: 0.25rem; line-height: 1.45;">
+              Pré-inscrivez-vous gratuitement dès maintenant pour réserver votre place prioritaire et être alerté(e) par WhatsApp pour profiter du <strong>tarif promotionnel de lancement</strong> !
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 0.65rem;">
+        <a href="#" id="coming-soon-whatsapp" target="_blank" rel="noopener noreferrer" class="btn btn--primary" style="width: 100%; justify-content: center; box-shadow: var(--glow-strong); padding: 0.85rem;">
+          <svg class="ico" viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true" style="margin-right: 0.35rem;">
+            <path d="M21 11.5a8.4 8.4 0 01-12.4 7.4L3 21l2.1-5.6A8.4 8.4 0 1121 11.5z" />
+          </svg>
+          M'alerter sur WhatsApp dès la sortie (Accès VIP)
+        </a>
+        <button type="button" class="btn btn--ghost" id="coming-soon-btn-close" style="width: 100%; justify-content: center; font-size: 0.85rem;">
+          Fermer et continuer à explorer
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/academy.js"></script>
+
+</body>
+
+</html>

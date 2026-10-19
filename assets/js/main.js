@@ -110,9 +110,36 @@
       burger.classList.toggle('is-open', open);
       burger.setAttribute('aria-expanded', String(open));
     });
-    $$('.nav__link').forEach(link => link.addEventListener('click', closeMenu));
+
+    // Fermer le menu sur clic d'un lien standard ou d'un item déroulant (mais pas sur le bouton dropdown)
+    $$('.nav__link:not(.nav__link--dropdown), .nav__dropdown-item').forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+
     document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') closeMenu();
+      if (e.key === 'Escape') {
+        closeMenu();
+        const dd = $('#nav-solutions');
+        if (dd) dd.classList.remove('is-open');
+      }
+    });
+  }
+
+  // Interaction menu déroulant Solutions
+  const dropdownBtn = $('#solutions-btn');
+  const dropdownItem = $('#nav-solutions');
+  if (dropdownBtn && dropdownItem) {
+    dropdownBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = dropdownItem.classList.toggle('is-open');
+      dropdownBtn.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!dropdownItem.contains(e.target)) {
+        dropdownItem.classList.remove('is-open');
+        dropdownBtn.setAttribute('aria-expanded', 'false');
+      }
     });
   }
 
@@ -229,6 +256,31 @@
     });
   });
 
+  // Pré-remplissage automatique de la formation lors d'un clic sur "Session présentielle"
+  const formationTriggers = $$('[data-formation]');
+  const insFormationSelect = $('#ins-formation');
+  if (formationTriggers.length > 0 && insFormationSelect) {
+    formationTriggers.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const formationName = btn.dataset.formation;
+        if (!formationName) return;
+        for (let i = 0; i < insFormationSelect.options.length; i++) {
+          const opt = insFormationSelect.options[i];
+          if (opt.value.toLowerCase().includes(formationName.toLowerCase()) || opt.text.toLowerCase().includes(formationName.toLowerCase())) {
+            insFormationSelect.selectedIndex = i;
+            break;
+          }
+        }
+        insFormationSelect.style.borderColor = 'var(--cyan-400)';
+        insFormationSelect.style.boxShadow = '0 0 15px rgba(6, 182, 212, 0.4)';
+        setTimeout(() => {
+          insFormationSelect.style.borderColor = '';
+          insFormationSelect.style.boxShadow = '';
+        }, 2000);
+      });
+    });
+  }
+
   /* ==========================================================================
      09-B. FILTRES & MODALE DU PORTFOLIO (NOS RÉALISATIONS)
      ========================================================================== */
@@ -286,7 +338,13 @@
 
     const techEl = $('#modal-project-tech');
     if (techEl) {
-      techEl.innerHTML = tech.map(t => `<span class="tag">${t.trim()}</span>`).join('');
+      techEl.innerHTML = '';
+      tech.forEach(t => {
+        const span = document.createElement('span');
+        span.className = 'tag';
+        span.textContent = t.trim();
+        techEl.appendChild(span);
+      });
     }
 
     const waEl = $('#modal-project-whatsapp');
@@ -494,7 +552,7 @@
         `📝 *Projet :* ${getVal('#dv-message')}`;
 
       const url = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`;
-      window.open(url, '_blank', 'noopener');
+      window.open(url, '_blank', 'noopener,noreferrer');
     });
   }
 
@@ -632,6 +690,13 @@
     if (e.key === 'Escape' && infoModal && infoModal.classList.contains('is-active')) {
       closeInfoModal();
     }
+  });
+
+  // Gestionnaire sécurisé de fallback pour les avatars d'équipe (remplace onerror inline)
+  $$('.member__avatar img').forEach(img => {
+    img.addEventListener('error', () => {
+      img.remove();
+    });
   });
 
 })();
